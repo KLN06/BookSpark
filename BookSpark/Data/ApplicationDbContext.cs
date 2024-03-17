@@ -1,5 +1,5 @@
 ﻿using BookSpark.Data.Entities;
-using System.Data.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookSpark.Data
 {
@@ -14,5 +14,10 @@ namespace BookSpark.Data
         public DbSet<User> Users { get; set; }
 
         public DbSet<Wishlist> Wishlist { get; set; }
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
+            : base(options)
+        { 
+        }
     }
 }
