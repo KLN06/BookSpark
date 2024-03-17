@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookSpark", "BookSpark\BookSpark.csproj", "{B613ED4B-9184-48EC-92C7-857801A32EF0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B613ED4B-9184-48EC-92C7-857801A32EF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B613ED4B-9184-48EC-92C7-857801A32EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B613ED4B-9184-48EC-92C7-857801A32EF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B613ED4B-9184-48EC-92C7-857801A32EF0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {432CEA6E-BF73-45A2-B914-BF7475649842}
+	EndGlobalSection
+EndGlobal
