@@ -19,9 +19,9 @@ namespace BookSpark.Repositories
             context.SaveChanges();
         }
 
-        public IEnumerable<Author> GetAll()
-        {
-            return context.Authors.ToList();
-        }
+ //       public IEnumerable<Author> GetAll()
+   //     {
+     //       return context.Authors.ToList();
+       // }
     }
 }

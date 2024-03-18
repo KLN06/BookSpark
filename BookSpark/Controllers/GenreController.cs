@@ -8,6 +8,11 @@ namespace BookSpark.Controllers
     {
         private readonly IGenreService genreService;
 
+        public GenreController(IGenreService genreService)
+        {
+            this.genreService = genreService;
+        }
+
         public IActionResult Index()
         {
             return View();

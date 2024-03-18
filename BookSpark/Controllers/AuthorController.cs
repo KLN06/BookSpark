@@ -15,8 +15,8 @@ namespace BookSpark.Controllers
 
         public IActionResult Index()
         {
-            var authors = authorService.GetAll();
-            return View(authors);
+          //  var authors = authorService.GetAll();
+            return View();
         }
 
         public IActionResult Add()
