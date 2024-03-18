@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookSpark.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240318171315_InitialCreate")]
+    [Migration("20240318193217_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

@@ -18,28 +18,12 @@
     </thead>
 
     <tbody>
-        @foreach (var product in Model)
+        @foreach (var author in Model)
         {
             <tr>
-                <th>@product.Name</th>
-                <th>@product.Birthdate</th>
-                <th>@product.Include()</th>
-                <th>
-                    <button>
-                        <a asp-controller="Product"
-                           asp-action="Edit"
-                           asp-route-id="@product.Id">
-                            Edit
-                        </a>
-                    </button>
-                    <button>
-                        <a asp-controller="Product"
-                           asp-action="Delete"
-                           asp-route-id="@product.Id">
-                            Delete
-                        </a>
-                    </button>
-                </th>
+                <th>@author.Name</th>
+                <th>@author.Birthdate</th>
+                <th>@author.Biography</th>
             </tr>
         }
     </tbody>
