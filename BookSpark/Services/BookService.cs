@@ -13,9 +13,9 @@ namespace BookSpark.Services
         {
             this.bookRepository = bookRepository;
         }
-        public void Add(CreateBookViewModel book)
+        public void Add(AddBookViewModel book)
         {
-            var bookEntity = new Book(book.Title, book.Description, book.PublishedYear, book.GenreId, book.AuthorId);
+            var bookEntity = new Book(book.Title, book.Description, book.PublishedYear, book.GenreId, book.AuthorId, book.ImageLink);
 
             bookRepository.Add(bookEntity);
         }

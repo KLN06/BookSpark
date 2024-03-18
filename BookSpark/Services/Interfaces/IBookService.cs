@@ -5,6 +5,6 @@ namespace BookSpark.Services.Interfaces
 {
     public interface IBookService
     {
-        void Add(CreateBookViewModel book);
+        void Add(AddBookViewModel book);
     }
 }

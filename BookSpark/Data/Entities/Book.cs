@@ -27,13 +27,17 @@ namespace BookSpark.Data.Entities
 
         public Author Author { get; set; }
 
-        public Book(string title, string description, int publishedYear, int genreId, int authorId)
+        [Required]
+        public string ImageLink { get; set; }
+
+        public Book(string title, string description, int publishedYear, int genreId, int authorId, string imageLink)
         {
             Title = title;
             Description = description;
             PublishedYear = publishedYear;
             GenreId = genreId;
             AuthorId = authorId;
+            ImageLink = imageLink;
         }
     }
 }

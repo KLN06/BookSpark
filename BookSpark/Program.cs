@@ -24,6 +24,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(context => context.UseMySQL(
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
 
+builder.Services.AddRazorPages();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
