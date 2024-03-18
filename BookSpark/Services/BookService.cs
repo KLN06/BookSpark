@@ -1,5 +1,5 @@
 ﻿using BookSpark.Data.Entities;
-using BookSpark.Models;
+using BookSpark.Models.BookViewModels;
 using BookSpark.Repositories.Interfaces;
 using BookSpark.Services.Interfaces;
 

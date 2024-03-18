@@ -1,4 +1,4 @@
-﻿using BookSpark.Models;
+﻿using BookSpark.Models.BookViewModels;
 using BookSpark.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

@@ -23,6 +23,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(context => context.UseMySQL(
 
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
+builder.Services.AddScoped<IAuthorRepository, AuthorRepository>();
+builder.Services.AddScoped<IAuthorService, AuthorService>();
 
 builder.Services.AddRazorPages();
 var app = builder.Build();

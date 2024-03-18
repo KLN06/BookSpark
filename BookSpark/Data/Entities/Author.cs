@@ -10,8 +10,15 @@ namespace BookSpark.Data.Entities
         [Required]
         public string Name { get; set; }
 
-        public DateTime? Birthdate { get; set; }
+        public DateOnly? Birthdate { get; set; }
 
-        public string? Bio { get; set; }
+        public string? Biography { get; set; }
+
+        public Author(string name, DateOnly? birthdate, string? biography)
+        {
+            Name = name;
+            Birthdate = birthdate;
+            Biography = biography;
+        }
     }
 }

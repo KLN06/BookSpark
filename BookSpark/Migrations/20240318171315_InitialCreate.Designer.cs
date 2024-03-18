@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookSpark.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240317134539_InitialCreate")]
+    [Migration("20240318171315_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -28,11 +28,11 @@ namespace BookSpark.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Bio")
+                    b.Property<string>("Biography")
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime?>("Birthdate")
-                        .HasColumnType("datetime(6)");
+                    b.Property<DateOnly?>("Birthdate")
+                        .HasColumnType("date");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -58,6 +58,10 @@ namespace BookSpark.Migrations
 
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
+
+                    b.Property<string>("ImageLink")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("PublishedYear")
                         .HasColumnType("int");

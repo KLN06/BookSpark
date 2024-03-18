@@ -22,8 +22,8 @@ namespace BookSpark.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "longtext", nullable: false),
-                    Birthdate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    Bio = table.Column<string>(type: "longtext", nullable: true)
+                    Birthdate = table.Column<DateOnly>(type: "date", nullable: true),
+                    Biography = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -69,6 +69,7 @@ namespace BookSpark.Migrations
                     PublishedYear = table.Column<int>(type: "int", nullable: false),
                     GenreId = table.Column<int>(type: "int", nullable: false),
                     AuthorId = table.Column<int>(type: "int", nullable: false),
+                    ImageLink = table.Column<string>(type: "longtext", nullable: false),
                     WishlistId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>

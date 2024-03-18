@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace BookSpark.Models
+namespace BookSpark.Models.BookViewModels
 {
     public class AddBookViewModel
     {
@@ -20,7 +20,7 @@ namespace BookSpark.Models
 
         public Author Author { get; set; }
 
-        public string ImageLink {  get; set; }
+        public string ImageLink { get; set; }
 
     }
 }
