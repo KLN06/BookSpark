@@ -1,4 +1,8 @@
 using BookSpark.Data;
+using BookSpark.Repositories;
+using BookSpark.Repositories.Interfaces;
+using BookSpark.Services;
+using BookSpark.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +20,9 @@ if(connectionString is null)
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>(context => context.UseMySQL(connectionString));
+
+builder.Services.AddScoped<IBookRepository, BookRepository>();
+builder.Services.AddScoped<IBookService, BookService>();
 
 var app = builder.Build();
 
