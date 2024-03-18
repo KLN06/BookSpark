@@ -17,8 +17,6 @@ namespace BookSpark.Data.Entities
         [Required]
         public int PublishedYear { get; set; }
 
-        public int Pages { get; set; }
-
         [ForeignKey("Genre")]
         public int GenreId { get; set; }
 
