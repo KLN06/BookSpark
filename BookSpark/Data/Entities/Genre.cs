@@ -9,5 +9,10 @@ namespace BookSpark.Data.Entities
 
         [Required]
         public string Name { get; set; }
+
+        public Genre(string name)
+        {
+            Name = name;
+        }
     }
 }
