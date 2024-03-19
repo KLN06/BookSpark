@@ -3,15 +3,14 @@
 *@
 @{
 }
+<h2>Edit genre</h2>
 
-<h2>Add Genre</h2>
-
-<form method="post" asp-controller="Genre" asp-action="Add">
+<form method="post" asp-controller="Genre" asp-action="Edit">
     <p>
         <label>Genre name</label>
-        <input type="text" name="Name" />
+        <input type="text" name="Name" value="@Model.Name"/>
     </p>
 
-    <button asp-controller="Genre" asp-action="Add" asp-action="Index" type="submit">Add</button>
+    <button asp-controller="Genre" asp-action="Edit" asp-action="Index" type="submit">Update</button>
     <button asp-controller="Home" asp-action="Index">Cancel</button>
 </form>

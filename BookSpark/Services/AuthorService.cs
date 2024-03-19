@@ -20,7 +20,7 @@ namespace BookSpark.Services
             authorRepository.Add(authorEntity);
         }
 
-      //  public IEnumerable<AuthorViewModel> GetAll()
+      //public IEnumerable<AuthorViewModel> GetAll()
         //{
           //  var authorEntities = authorRepository.GetAll();
 

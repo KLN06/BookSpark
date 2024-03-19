@@ -6,6 +6,6 @@ namespace BookSpark.Services.Interfaces
     {
         void Add(AddAuthorViewModel author);
 
-       // IEnumerable<AuthorViewModel> GetAll();
+       //IEnumerable<AuthorViewModel> GetAll();
     }
 }
