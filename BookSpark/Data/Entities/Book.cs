@@ -31,9 +31,7 @@ namespace BookSpark.Data.Entities
         public string ImageLink { get; set; }
 
         public Book()
-        {
-
-        }
+        { }
         public Book(string title, string description, int publishedYear, int genreId, int authorId, string imageLink)
         {
             Title = title;

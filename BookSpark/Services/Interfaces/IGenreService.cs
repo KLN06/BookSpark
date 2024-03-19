@@ -14,5 +14,7 @@ namespace BookSpark.Services.Interfaces
         void Edit(EditGenreViewModel genre);
 
         GenreViewModel Get(int id);
+
+        EditGenreViewModel GetEditable(int id);
     }
 }

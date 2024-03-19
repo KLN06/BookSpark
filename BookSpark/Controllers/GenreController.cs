@@ -19,6 +19,7 @@ namespace BookSpark.Controllers
            
             return View(genres);
         }
+
         public IActionResult Add()
         {
             return View();
@@ -39,7 +40,14 @@ namespace BookSpark.Controllers
 
         public IActionResult Edit(int id)
         {
-            var genre = genreService.Get(id);
+            var genre = genreService.GetEditable(id);
+            return View(genre);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditGenreViewModel genre)
+        {
+            genreService.Edit(genre);
             return RedirectToAction(nameof(Index));
         }
     }
