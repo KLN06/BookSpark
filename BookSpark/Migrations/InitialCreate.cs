@@ -22,7 +22,7 @@ namespace BookSpark.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "longtext", nullable: false),
-                    Birthdate = table.Column<DateOnly>(type: "date", nullable: true),
+                    Birthdate = table.Column<DateTime>(type: "date", nullable: true),
                     Biography = table.Column<string>(type: "longtext", nullable: true)
                 },
                 constraints: table =>

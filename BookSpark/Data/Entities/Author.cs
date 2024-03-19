@@ -10,11 +10,13 @@ namespace BookSpark.Data.Entities
         [Required]
         public string Name { get; set; }
 
-        public DateOnly? Birthdate { get; set; }
+        public DateTime? Birthdate { get; set; }
 
         public string? Biography { get; set; }
 
-        public Author(string name, DateOnly? birthdate, string? biography)
+        public virtual ICollection<Book> Books { get; set; }
+
+        public Author(string name, DateTime? birthdate, string? biography)
         {
             Name = name;
             Birthdate = birthdate;

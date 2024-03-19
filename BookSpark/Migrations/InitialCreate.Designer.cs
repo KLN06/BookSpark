@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookSpark.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240318193217_InitialCreate")]
+    [Migration("20240319090242_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -31,7 +31,7 @@ namespace BookSpark.Migrations
                     b.Property<string>("Biography")
                         .HasColumnType("longtext");
 
-                    b.Property<DateOnly?>("Birthdate")
+                    b.Property<DateTime?>("Birthdate")
                         .HasColumnType("date");
 
                     b.Property<string>("Name")
@@ -178,7 +178,7 @@ namespace BookSpark.Migrations
             modelBuilder.Entity("BookSpark.Data.Entities.Book", b =>
                 {
                     b.HasOne("BookSpark.Data.Entities.Author", "Author")
-                        .WithMany()
+                        .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -207,6 +207,11 @@ namespace BookSpark.Migrations
                         .IsRequired();
 
                     b.Navigation("Wishlist");
+                });
+
+            modelBuilder.Entity("BookSpark.Data.Entities.Author", b =>
+                {
+                    b.Navigation("Books");
                 });
 
             modelBuilder.Entity("BookSpark.Data.Entities.Wishlist", b =>

@@ -1,4 +1,5 @@
 ﻿using BookSpark.Models.BookViewModels;
+using BookSpark.Services;
 using BookSpark.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,7 +15,8 @@ namespace BookSpark.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var books = bookService.GetAll().ToList();
+            return View(books);
         }
         public IActionResult Add()
         {

@@ -1,6 +1,7 @@
 ﻿using BookSpark.Models.AuthorViewModels;
 using BookSpark.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookSpark.Controllers
 {
@@ -15,8 +16,9 @@ namespace BookSpark.Controllers
 
         public IActionResult Index()
         {
-          //  var authors = authorService.GetAll();
-            return View();
+            var authors = authorService.GetAll().ToList();
+            return View(authors);
+
         }
 
         public IActionResult Add()

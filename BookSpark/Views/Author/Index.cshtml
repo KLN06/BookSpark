@@ -1,20 +1,44 @@
-﻿@using BookSpark.Models.AuthorViewModels
+﻿@using BookSpark.Data.Entities
+@using BookSpark.Models.AuthorViewModels
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
 @model IEnumerable<AuthorViewModel>
-<h2>Products</h2>
+<h2>Authors</h2>
 
 <table class="table">
     <thead>
         <tr>
             <th>Name</th>
             <th>Birthdate</th>
-            <th>Books</th>
             <th>Biography</th>
+            <th>Books</th>
         </tr>
     </thead>
 
-</table> 
+    <tbody>
+        @foreach (var author in Model)
+        {
+            <tr>
+                <th>@author.Name</th>
+                <th>@author.Birthdate</th>
+                <th>@author.Biography</th>
+                @if (author.Books is not null)
+                {
+                    @foreach (var book in author.Books)
+                    {
+                        <th>@book.Title</th>
+                    }
+                }
+                @if (author.Books is null)
+                {
+                    <th></th>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Author" asp-action="Add" class="btn btn-primary">Add author</a>

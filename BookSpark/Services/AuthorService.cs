@@ -20,14 +20,14 @@ namespace BookSpark.Services
             authorRepository.Add(authorEntity);
         }
 
-      //  public IEnumerable<AuthorViewModel> GetAll()
-        //{
-          //  var authorEntities = authorRepository.GetAll();
+        public IEnumerable<AuthorViewModel> GetAll()
+        {
+            var authorEntities = authorRepository.GetAll();
 
-            //var products = authorEntities
-              //  .Select(author => new AuthorViewModel(author.Id, author.Name, author.Birthdate, author.Biography));
+            var authors = authorEntities
+               .Select(author => new AuthorViewModel(author.Id, author.Name, author.Birthdate, author.Biography, author.Books));
 
-            //return products;
-       // }
+            return authors;
+        }
     }
 }

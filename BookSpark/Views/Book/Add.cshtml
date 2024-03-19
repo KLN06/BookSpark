@@ -19,23 +19,24 @@
 
         <p>
             <label>Publish year</label>
-            <input type="number" name="PublishedYear" />
+            <input type="number" name="PublishedYear"/>
         </p>
 
         <p>
             <label>Genre ID</label>
-            <input type="number" name="GenreId" />
+            <input type="number" name="GenreId"/>
         </p>
 
         <p>
             <label>Author ID</label>
-            <input type="number" name="AuthorId" />
+            <input type="number" name="AuthorId"/>
         </p>
         
          <p>
             <label>Cover image link</label>
-            <input type="number" name="ImageLink" />
+            <input type="text" name="ImageLink"/>
         </p>
 
         <button type="submit">Add</button>
+         <button asp-controller="Book" asp-action="Index">Cancel</button>
     </form>

@@ -7,6 +7,6 @@ namespace BookSpark.Repositories.Interfaces
     {
         public void Add(Author author);
 
-      //  IEnumerable<Author> GetAll();
+        IEnumerable<Author> GetAll();
     }
 }
