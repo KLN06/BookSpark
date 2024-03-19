@@ -17,5 +17,32 @@ namespace BookSpark.Repositories
             context.Genres.Add(genre);
             context.SaveChanges();
         }
+
+        public IEnumerable<Genre> GetAll()
+        {
+            return context.Genres.ToList();
+        }
+
+        public Genre Get(int id)
+        {
+            return context.Genres.FirstOrDefault(genre => genre.Id == id);
+        }
+        public void Delete(int id)
+        {
+            var genre = Get(id);
+            if(genre!=null)
+            {
+                context.Genres.Remove(genre);
+                context.SaveChanges();
+            }
+        }
+
+        public void Edit(Genre genre)
+        {
+            var entity = Get(genre.Id);
+            entity.Name = genre.Name;
+
+            context.SaveChanges();
+        }
     }
 }

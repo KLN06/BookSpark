@@ -1,4 +1,4 @@
-﻿using BookSpark.Models;
+﻿using BookSpark.Models.GenreViewModels;
 using BookSpark.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,7 +15,9 @@ namespace BookSpark.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var genres = genreService.GetAll();
+           
+            return View(genres);
         }
         public IActionResult Add()
         {
@@ -26,6 +28,18 @@ namespace BookSpark.Controllers
         public IActionResult Add(AddGenreViewModel genre)
         {
             genreService.Add(genre);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Delete(int id)
+        {
+            genreService.Delete(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var genre = genreService.Get(id);
             return RedirectToAction(nameof(Index));
         }
     }

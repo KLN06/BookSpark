@@ -10,6 +10,13 @@ namespace BookSpark.Data.Entities
         [Required]
         public string Name { get; set; }
 
+        public Genre()
+        { }
+        public Genre(int id, string name)
+            : this(name)
+        {
+            Id = id;
+        }
         public Genre(string name)
         {
             Name = name;

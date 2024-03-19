@@ -1,4 +1,4 @@
-﻿namespace BookSpark.Models
+﻿namespace BookSpark.Models.GenreViewModels
 {
     public class AddGenreViewModel
     {
