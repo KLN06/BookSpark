@@ -36,6 +36,14 @@
                 {
                     <th></th>
                 }
+                <th>
+                    <button>
+                        <a asp-controller="Author" asp-action="Edit" asp-route-id="@author.Id">Edit</a>
+                    </button>
+                    <button>
+                        <a asp-controller="Author" asp-action="Delete" asp-route-id="@author.Id">Delete</a>
+                    </button>
+                </th>
             </tr>
         }
     </tbody>

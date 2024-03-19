@@ -1,0 +1,29 @@
+﻿@using BookSpark.Models.AuthorViewModels
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model EditAuthorViewModel
+
+<h2>Edit author</h2>
+<form method="post" asp-controller="Author" asp-action="Edit">
+    <p>
+        <label>Name</label>
+        <input type="text" name="Name" value="@Model.Name"/>
+    </p>
+
+    <p>
+        <label>Birthdate</label>
+        <input type="date" name="Birthdate" value="@Model.Birthdate"/>
+    </p>
+
+    <p>
+        <label>Biography</label>
+        <input type="text" name="Biography" value="@Model.Biography"/>
+    </p>
+
+    <button asp-controller="Author" asp-action="Edit" asp-action="Index" type="submit">Update</button>
+    <button asp-controller="Home" asp-action="Index">Cancel</button>
+
+</form>

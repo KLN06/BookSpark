@@ -14,7 +14,24 @@ namespace BookSpark.Data.Entities
 
         public string? Biography { get; set; }
 
-        public virtual ICollection<Book> Books { get; set; }
+        public virtual ICollection<Book>? Books { get; set; }
+
+        public Author(int id, string name, DateTime? birthdate, string? biography, ICollection<Book>? books)
+        {
+            Id = id;
+            Name = name;
+            Birthdate = birthdate;
+            Biography = biography;
+            Books = books;
+        }
+
+        public Author(int id, string name, DateTime? birthdate, string? biography)
+        {
+            Id = id;
+            Name = name;
+            Birthdate = birthdate;
+            Biography = biography;
+        }
 
         public Author(string name, DateTime? birthdate, string? biography)
         {

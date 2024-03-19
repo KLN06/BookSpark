@@ -1,4 +1,6 @@
 ﻿using BookSpark.Models.AuthorViewModels;
+using BookSpark.Models.GenreViewModels;
+using BookSpark.Services;
 using BookSpark.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +33,25 @@ namespace BookSpark.Controllers
         {
             authorService.Add(author);
 
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Delete(int id)
+        {
+            authorService.Delete(id);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var author = authorService.GetEditable(id);
+            return View(author);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditAuthorViewModel author)
+        {
+            authorService.Edit(author);
             return RedirectToAction(nameof(Index));
         }
     }

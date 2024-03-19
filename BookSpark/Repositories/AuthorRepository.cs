@@ -23,7 +23,32 @@ namespace BookSpark.Repositories
 
         public IEnumerable<Author> GetAll()
         {
-            return context.Authors.Include("Books").ToList();
+            //return context.Authors.Include("Books").ToList();
+            return context.Authors.ToList();
+        }
+
+        public Author Get(int id)
+        {
+            return context.Authors.FirstOrDefault(author => author.Id == id);
+        }
+        public void Delete(int id)
+        {
+            var author = Get(id);
+            if (author != null)
+            {
+                context.Authors.Remove(author);
+                context.SaveChanges();
+            }
+        }
+
+        public void Edit(Author author)
+        {
+            var entity = Get(author.Id);
+            entity.Name = author.Name;
+            entity.Birthdate = author.Birthdate;
+            entity.Biography = author.Biography;
+
+            context.SaveChanges();
         }
     }
 }
