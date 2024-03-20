@@ -16,6 +16,10 @@ namespace BookSpark.Repositories
         }
         public void Add(Book book)
         {
+            if(book is null)
+            {
+                throw new ArgumentException("Book can't be null!");
+            }
             context.Books.Add(book);
             context.SaveChanges();
         }
@@ -23,19 +27,23 @@ namespace BookSpark.Repositories
         public void Delete(int id)
         {
             var book = Get(id);
-            context.Books.Remove(book);
-            context.SaveChanges();
+            if(book != null)
+            {
+                context.Books.Remove(book);
+                context.SaveChanges();
+            }
         }
 
-        public void Edit(BookViewModel book)
+        public void Edit(EditBookViewModel book)
         {
             var entity = Get(book.Id);
 
             entity.Title = book.Title;
             entity.Description = book.Description;
             entity.PublishedYear = book.PublishedYear;
-            entity.Genre.Name = book.GenreName;
-            entity.Author.Name = book.AuthorName;
+            entity.GenreId = book.GenreId;
+            entity.AuthorId = book.AuthorId;
+            entity.ImageLink = book.ImageLink;
 
             context.SaveChanges();
         }
@@ -43,6 +51,10 @@ namespace BookSpark.Repositories
         public Book Get(int id)
         {
             var book = context.Books.FirstOrDefault(x => x.Id == id);
+            if (book is null)
+            {
+                throw new ArgumentException("No book exists with this id");
+            }
             return book;
         }
 

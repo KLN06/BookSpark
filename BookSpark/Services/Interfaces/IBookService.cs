@@ -9,5 +9,11 @@ namespace BookSpark.Services.Interfaces
         void Add(AddBookViewModel book);
 
         IEnumerable<BookViewModel> GetAll();
+
+        void Delete(int id);
+
+        void Edit(EditBookViewModel product);
+
+        BookViewModel Get(int id);
     }
 }

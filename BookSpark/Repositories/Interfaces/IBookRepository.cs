@@ -11,7 +11,7 @@ namespace BookSpark.Repositories.Interfaces
 
         void Delete(int id);
 
-        void Edit(BookViewModel book);
+        void Edit(EditBookViewModel book);
 
         Book Get(int id);
     }

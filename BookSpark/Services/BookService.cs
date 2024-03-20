@@ -22,6 +22,23 @@ namespace BookSpark.Services
             bookRepository.Add(bookEntity);
         }
 
+        public void Delete(int id)
+        {
+            bookRepository.Delete(id);
+        }
+
+        public void Edit(EditBookViewModel book)
+        {
+            bookRepository.Edit(book);
+        }
+
+        public BookViewModel Get(int id)
+        {
+            var book = bookRepository.Get(id);
+
+            return new BookViewModel(book);
+        }
+
         public IEnumerable<BookViewModel> GetAll()
         {
             var bookEntities = bookRepository.GetAll();

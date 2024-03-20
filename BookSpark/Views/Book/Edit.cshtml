@@ -1,0 +1,41 @@
+﻿@using BookSpark.Models.BookViewModels
+@using BookSpark.Data.Entities
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model EditBookViewModel
+
+<h2>Edit book</h2>
+
+<form method="post" asp-controller="Book" asp-action="Edit">
+    <p>
+        <label>Book title</label>
+        <input type="text" name="Title" value="@Model.Title" />
+    </p>
+    <p>
+        <label>Description</label>
+        <input type="text" name="Description" value="@Model.Description" />
+    </p>
+    <p>
+        <label>Published year</label>
+        <input type="Date" name="PublishedYear" value="@Model.PublishedYear" />
+    </p>
+    <p>
+        <label>Genre id</label>
+        <input type="number" name="GenreId" value="@Model.GenreId" />
+    </p>
+    <p>
+        <label>Author id</label>
+        <input type="number" name="AuthorId" value="@Model.AuthorId" />
+    </p>
+    <p>
+        <label>Cover image link</label>
+        <input type="text" name="ImageLink" value="@Model.ImageLink" />
+    </p>
+
+    <button asp-controller="Book" asp-action="Edit" asp-action="Index" type="submit">Update</button>
+    <button asp-controller="Book" asp-action="Index">Cancel</button>
+</form>
