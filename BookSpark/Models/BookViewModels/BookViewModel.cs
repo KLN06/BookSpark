@@ -1,4 +1,5 @@
 ﻿using BookSpark.Data.Entities;
+using BookSpark.Repositories;
 
 namespace BookSpark.Models.BookViewModels
 {
