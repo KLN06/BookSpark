@@ -12,12 +12,12 @@ namespace BookSpark.Data.Entities
 
         public Wishlist? Wishlist { get; set; }
 
-        public AppUser(string id, string email, string username, string wishListId)
+        public AppUser(string id, string email, string username, Wishlist wishList)
         {
             Id = id;
             Email = email;
             UserName = username;
-            WishlistId = wishListId;
+            Wishlist = wishList;
         }
 
         public AppUser()

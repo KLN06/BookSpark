@@ -117,14 +117,9 @@ namespace BookSpark.Areas.Identity.Pages.Account
 
         private AppUser CreateUser()
         {
-            var wishList = new Wishlist(Guid.NewGuid().ToString());
-            return new AppUser()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Email = Input.Email,
-                UserName = Input.Email,
-                WishlistId = wishList.Id
-            };
+            var wishlist = new Wishlist(Guid.NewGuid().ToString());
+            var appUser = new AppUser(Guid.NewGuid().ToString(),Input.Email,Input.Email,wishlist);
+            return appUser;
         }
     }
 }
