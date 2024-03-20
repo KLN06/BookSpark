@@ -1,9 +1,10 @@
 ﻿using BookSpark.Data.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookSpark.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<AppUser>
     {
         public DbSet<Author> Authors { get; set; }
 
@@ -11,7 +12,7 @@ namespace BookSpark.Data
         
         public DbSet<Genre> Genres { get; set; }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
 
         public DbSet<Wishlist> Wishlist { get; set; }
 
