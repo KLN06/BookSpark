@@ -4,8 +4,6 @@ using BookSpark.Repositories.Interfaces;
 using BookSpark.Services;
 using BookSpark.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using BookSpark.Data.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,14 +20,6 @@ if(connectionString is null)
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ApplicationDbContext>(context => context.UseMySQL(connectionString));
-
-builder.Services.AddDefaultIdentity<User>(options => 
-{
-    options.Password.RequireDigit = true;
-    options.Password.RequireUppercase = true;
-    options.Password.RequiredLength = 5;
-})
-    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
@@ -52,8 +42,6 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseAuthentication();
-
 app.UseRouting();
 
 app.UseAuthorization();
@@ -61,7 +49,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.MapRazorPages();
 
 app.Run();
