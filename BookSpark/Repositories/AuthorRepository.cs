@@ -13,7 +13,6 @@ namespace BookSpark.Repositories
         public AuthorRepository(ApplicationDbContext context)
         {
             this.context = context;
-            //hi
         }
 
         public void Add(Author author)
