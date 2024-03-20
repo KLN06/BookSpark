@@ -30,11 +30,16 @@
                     <div class="card mb-4 box-shadow">
                         <img src=@book.ImageLink alt="The image is not found">
                         <div class="card-body">
-                            <p class="card-text">@book.Description</p>
+                            <p class="card-text">@book.Title</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    <button>
+                                        <a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id">Edit</a>
+                                    </button>
+                                    <button>
+                                        <a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Delete</a>
+                                    </button>
                                 </div>
                                 <small class="text-muted">@book.AuthorName</small>
                                 <small class="text-muted">@book.GenreName</small>

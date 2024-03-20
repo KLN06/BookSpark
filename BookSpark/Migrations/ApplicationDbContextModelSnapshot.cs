@@ -37,7 +37,7 @@ namespace BookSpark.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("BookSpark.Data.Entities.Book", b =>
@@ -78,7 +78,7 @@ namespace BookSpark.Migrations
 
                     b.HasIndex("WishlistId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("BookSpark.Data.Entities.Genre", b =>
@@ -93,7 +93,7 @@ namespace BookSpark.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("BookSpark.Data.Entities.User", b =>
@@ -158,7 +158,7 @@ namespace BookSpark.Migrations
 
                     b.HasIndex("WishlistId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("BookSpark.Data.Entities.Wishlist", b =>
@@ -169,7 +169,7 @@ namespace BookSpark.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Wishlist");
+                    b.ToTable("Wishlist", (string)null);
                 });
 
             modelBuilder.Entity("BookSpark.Data.Entities.Book", b =>

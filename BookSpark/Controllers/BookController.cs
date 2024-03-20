@@ -29,5 +29,28 @@ namespace BookSpark.Controllers
             bookService.Add(book);
             return RedirectToAction(nameof(Index));
         }
+
+        public IActionResult Delete(int id)
+        {
+            bookService.Delete(id);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var book = bookService.Get(id);
+            var book1 = new EditBookViewModel(book.Title, book.Description, book.PublishedYear, book.GenreId, book.AuthorId, book.ImageLink);
+
+            return View(book1);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(EditBookViewModel book)
+        {
+            bookService.Edit(book);
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

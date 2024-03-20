@@ -24,13 +24,12 @@ namespace BookSpark.Models.BookViewModels
 
         public BookViewModel(Book book)
         {
+            Id = book.Id;
             Title = book.Title;
             Description = book.Description;
             PublishedYear = book.PublishedYear;
             GenreId = book.GenreId;
-            GenreName = book.Genre.Name;
             AuthorId = book.AuthorId;
-            AuthorName = book.Author.Name;
             ImageLink = book.ImageLink;
         }
     }

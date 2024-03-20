@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Extensions.Hosting;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookSpark.Data.Entities
 {
@@ -10,6 +11,7 @@ namespace BookSpark.Data.Entities
         [Required]
         public string Name { get; set; }
 
+        public ICollection<Book> Books { get; } = new List<Book>();
         public Genre()
         { }
         public Genre(int id, string name)
@@ -20,6 +22,11 @@ namespace BookSpark.Data.Entities
         public Genre(string name)
         {
             Name = name;
+        }
+
+        public Genre(int id, string name, ICollection<Book> books) : this(id, name)
+        {
+            Books = books;
         }
     }
 }
