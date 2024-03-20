@@ -13,9 +13,7 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>Birthdate</th>
-            <th>Biography</th>
-            <th>Books</th>
+            <th>Actions</th>
         </tr>
     </thead>
 
@@ -25,26 +23,17 @@
             <tr>
                 <th>@author.Id</th>
                 <th>@author.Name</th>
-                <th>@author.Birthdate</th>
-                <th>@author.Biography</th>
-                @if (author.Books is not null)
-                {
-                    @foreach (var book in author.Books)
-                    {
-                        <th>@book.Title</th>
-                    }
-                }
-                @if (author.Books is null)
-                {
-                    <th>No available books by @author.Name</th>
-                }
                 <th>
+                    <button>
+                        <a asp-controller="Author" asp-action="Detail" asp-route-id="@author.Id">Details</a>
+                    </button>
                     <button>
                         <a asp-controller="Author" asp-action="Edit" asp-route-id="@author.Id">Edit</a>
                     </button>
                     <button>
                         <a asp-controller="Author" asp-action="Delete" asp-route-id="@author.Id">Delete</a>
                     </button>
+
                 </th>
             </tr>
             }

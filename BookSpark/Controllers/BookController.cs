@@ -39,10 +39,16 @@ namespace BookSpark.Controllers
 
         public IActionResult Edit(int id)
         {
-            var book = bookService.Get(id);
-            var book1 = new EditBookViewModel(book.Title, book.Description, book.PublishedYear, book.GenreId, book.AuthorId, book.ImageLink);
+            var bookViewModel = bookService.Get(id);
+            var editBookViewModel = new EditBookViewModel(
+                bookViewModel.Title,
+                bookViewModel.Description,
+                bookViewModel.PublishedYear,
+                bookViewModel.GenreId,
+                bookViewModel.AuthorId,
+                bookViewModel.ImageLink);
 
-            return View(book1);
+            return View(editBookViewModel);
         }
 
         [HttpPost]
@@ -51,6 +57,12 @@ namespace BookSpark.Controllers
             bookService.Edit(book);
 
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Detail(int id)
+        {
+            var book = bookService.Get(id);
+            return View(book);
         }
     }
 }
