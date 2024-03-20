@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookSpark.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext
     {
         public DbSet<Author> Authors { get; set; }
 
@@ -17,7 +17,6 @@ namespace BookSpark.Data
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
             : base(options)
-        { 
-        }
+        { }
     }
 }
