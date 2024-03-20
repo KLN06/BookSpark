@@ -15,9 +15,10 @@
                 <th>Genre</th>
                 <th>Id</th>
             </tr>
+            <tbody>
                 @foreach (var genre in Model)
                 {
-                    <tr>
+                <tr>
                     <th>@genre.Name</th>
                     <th>@genre.Id</th>
                     <th>
@@ -28,8 +29,9 @@
                             <a asp-controller="Genre" asp-action="Delete" asp-route-id="@genre.Id">Delete</a>
                         </button>
                     </th>
-                    </tr>
+                </tr>
                 }
+            </tbody>
             }
             else
             {

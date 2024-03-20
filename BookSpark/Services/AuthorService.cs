@@ -41,13 +41,13 @@ namespace BookSpark.Services
         public EditAuthorViewModel GetEditable(int id)
         {
             var author = authorRepository.Get(id);
-            return new EditAuthorViewModel(author.Id, author.Name, author.Birthdate, author.Biography); //, author.Books);
+            return new EditAuthorViewModel(author.Id, author.Name, author.Birthdate, author.Biography, author.Books);
 
         }
 
         public void Edit(EditAuthorViewModel author)
         {
-            var authorEntity = new Author(author.Id, author.Name, author.Birthdate, author.Biography); //, author.Books);
+            var authorEntity = new Author(author.Id, author.Name, author.Birthdate, author.Biography, author.Books);
 
             authorRepository.Edit(authorEntity);
         }

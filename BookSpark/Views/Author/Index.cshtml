@@ -11,6 +11,7 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Id</th>
             <th>Name</th>
             <th>Birthdate</th>
             <th>Biography</th>
@@ -22,6 +23,7 @@
         @foreach (var author in Model)
         {
             <tr>
+                <th>@author.Id</th>
                 <th>@author.Name</th>
                 <th>@author.Birthdate</th>
                 <th>@author.Biography</th>
@@ -34,7 +36,7 @@
                 }
                 @if (author.Books is null)
                 {
-                    <th></th>
+                    <th>No available books by @author.Name</th>
                 }
                 <th>
                     <button>
@@ -45,7 +47,7 @@
                     </button>
                 </th>
             </tr>
-        }
+            }
     </tbody>
 </table>
 

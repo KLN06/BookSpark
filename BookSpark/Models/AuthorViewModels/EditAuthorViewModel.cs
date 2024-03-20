@@ -13,7 +13,7 @@ namespace BookSpark.Models.AuthorViewModels
 
         public string? Biography { get; set; }
 
-        //public virtual ICollection<Book> Books { get; set; }
+        public virtual ICollection<Book> Books { get; set; }
 
         //public EditAuthorViewModel(int id, string name, DateTime? birthdate, string? biography, ICollection<Book> books)
         //{
@@ -24,12 +24,13 @@ namespace BookSpark.Models.AuthorViewModels
             //Books = books;
         //}
         public EditAuthorViewModel() { }
-        public EditAuthorViewModel(int id, string name, DateTime? birthdate, string? biography)
+        public EditAuthorViewModel(int id, string name, DateTime? birthdate, string? biography, ICollection<Book> books)
         {
             Id = id;
             Name = name;
             Birthdate = birthdate;
             Biography = biography;
+            Books = books;
         }
     }
 }

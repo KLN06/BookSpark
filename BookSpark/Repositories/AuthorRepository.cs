@@ -24,7 +24,7 @@ namespace BookSpark.Repositories
         public IEnumerable<Author> GetAll()
         {
             //return context.Authors.Include("Books").ToList();
-            return context.Authors.ToList();
+            return context.Authors.Include("Books").ToList();
         }
 
         public Author Get(int id)
@@ -47,7 +47,6 @@ namespace BookSpark.Repositories
             entity.Name = author.Name;
             entity.Birthdate = author.Birthdate;
             entity.Biography = author.Biography;
-
             context.SaveChanges();
         }
     }
