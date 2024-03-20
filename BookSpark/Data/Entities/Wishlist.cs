@@ -5,8 +5,14 @@ namespace BookSpark.Data.Entities
     public class Wishlist
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public ICollection<Book> Books { get; set;}
+
+        public Wishlist(string id)
+        {
+            Id = id;
+            Books = new List<Book>();
+        }
     }
 }
