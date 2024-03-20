@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@using BookSpark.Data.Entities
+@using BookSpark.Models.AuthorViewModels
+@model AuthorViewModel
+
+<tr>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Birthdate</th>
+                <th>Biography</th>
+                <th>Books</th>
+            </tr>
+        </thead>
+
+     <tbody>
+        <th>@Model.Name</th>
+        <th>@Model.Birthdate</th>
+        <th>@Model.Biography</th>
+        @if (Model.Books is not null)
+        {
+            @foreach (var book in Model.Books)
+            {
+                <th>@book.Title</th>
+            }
+        }
+        @if (Model.Books is null)
+        {
+            <th>No available books by @Model.Name</th>
+        }
+        </tbody>
+    </table>
+    <th>
+        <button>
+            <a asp-controller="Author" asp-action="Index">Back</a>
+    </th>
+</tr>

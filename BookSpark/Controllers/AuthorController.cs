@@ -54,5 +54,10 @@ namespace BookSpark.Controllers
             authorService.Edit(author);
             return RedirectToAction(nameof(Index));
         }
+        public IActionResult Detail(int id)
+        {
+            var author = authorService.Get(id);
+            return View(author);
+        }
     }
 }

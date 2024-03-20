@@ -34,7 +34,9 @@
                             <p class="card-text">@book.Title</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                    <button>
+                                        <a asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id">Detail</a>
+                                    </button>
                                     <button>
                                         <a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id">Edit</a>
                                     </button>
@@ -42,8 +44,8 @@
                                         <a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Delete</a>
                                     </button>
                                 </div>
-                                <small class="text-muted">@book.AuthorName</small>
-                                <small class="text-muted">@book.GenreName</small>
+                                <small class="text-muted">@book.Author.Name</small>
+                                <small class="text-muted">@book.Genre.Name</small>
                             </div>
                         </div>
                     </div>

@@ -1,0 +1,38 @@
+﻿@using BookSpark.Models.BookViewModels
+@using BookSpark.Data.Entities
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model BookViewModel
+
+<div class="container">
+
+    <h1 class="my-4"> @Model.Title</h1>
+
+    <div class="row">
+
+        <div class="col-md-8">
+            <img class="img-fluid" src=@Model.ImageLink alt="">
+        </div>
+
+        <div class="col-md-4">
+            <h3 class="my-3">Description</h3>
+            <p>@Model.Description</p>
+            <h3 class="my-3">Details</h3>
+            <ul>
+                <li>Genre:</li>
+                <p class="card-text">@Model.Genre.Name</p>
+                <li>Author:</li>
+                <p class="card-text">@Model.Author.Name</p>
+                <li>Published year:</li>
+                <p class="card-text">@Model.PublishedYear</p>
+            </ul>
+        </div>
+
+    </div>
+
+</div>

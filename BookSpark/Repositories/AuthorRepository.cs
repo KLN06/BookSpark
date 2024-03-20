@@ -23,13 +23,12 @@ namespace BookSpark.Repositories
 
         public IEnumerable<Author> GetAll()
         {
-            //return context.Authors.Include("Books").ToList();
             return context.Authors.Include("Books").ToList();
         }
 
         public Author Get(int id)
         {
-            return context.Authors.FirstOrDefault(author => author.Id == id);
+            return context.Authors.Include("Books").FirstOrDefault(author => author.Id == id);
         }
         public void Delete(int id)
         {
