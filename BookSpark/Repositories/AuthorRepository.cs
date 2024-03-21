@@ -28,7 +28,12 @@ namespace BookSpark.Repositories
 
         public Author Get(int id)
         {
-            return context.Authors.Include("Books").FirstOrDefault(author => author.Id == id);
+            var author = context.Authors.Include("Books").FirstOrDefault(author => author.Id == id);
+            if(author is null)
+            {
+                throw new ArgumentException("The author cannot be null");
+            }
+            return author;
         }
         public void Delete(int id)
         {

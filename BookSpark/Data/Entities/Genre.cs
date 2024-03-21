@@ -11,7 +11,7 @@ namespace BookSpark.Data.Entities
         [Required]
         public string Name { get; set; }
 
-        public ICollection<Book> Books { get; } = new List<Book>();
+        public ICollection<Book> Books { get; set; }
         public Genre()
         { }
         public Genre(int id, string name)

@@ -1,0 +1,58 @@
+﻿@using BookSpark.Models.BookViewModels
+@using BookSpark.Data.Entities
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model IEnumerable<BookViewModel>
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">My wishlist</h1>
+        <p class="lead text-muted"></p>
+        <p>
+            <a href="#" class="btn btn-primary my-2">Main call to action</a>
+            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+        </p>
+    </div>
+</section>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            @if(Model is not null)
+            {
+                @foreach (var book in Model)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img src=@book.ImageLink alt="The image is not found">
+                            <div class="card-body">
+                                <p class="card-text">@book.Title</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <button>
+                                            <a asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id">Detail</a>
+                                        </button>
+                                        <button>
+                                            <a asp-controller="Wishlist" asp-action="Remove" asp-route-id="@book.Id">Remove</a>
+                                        </button>
+                                    </div>
+                                    <small class="text-muted">@book.Author.Name</small>
+                                    <small class="text-muted">@book.Genre.Name</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+           
+        </div>
+    </div>
+</div>
+
+</main>
+
+<a asp-controller="Book" asp-action="Add" class="btn btn-primary">Add book</a>
