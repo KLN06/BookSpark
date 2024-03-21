@@ -30,11 +30,9 @@ namespace BookSpark.Controllers
         {
             return RedirectToAction(nameof(Index));
         }*/
-
-     //   [HttpPost]
+        
         public async Task<IActionResult> Add(int bookId)
         {
-            bookId++;
             var user = await userManager.GetUserAsync(User);
             var wishlistId = user.WishlistId;
 
@@ -42,13 +40,13 @@ namespace BookSpark.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Remove(BookViewModel book)
+
+        public async Task<IActionResult> Remove(int bookId)
         {
             var user = await userManager.GetUserAsync(User);
             var wishlistId = user.WishlistId;
 
-            wishlistService.Remove(book.Id, wishlistId);
+            wishlistService.Remove(bookId, wishlistId);
             return RedirectToAction(nameof(Index));
         }
 

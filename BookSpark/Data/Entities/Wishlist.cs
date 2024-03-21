@@ -7,12 +7,20 @@ namespace BookSpark.Data.Entities
         [Key]
         public string Id { get; set; }
 
-        public List<Book>? Books { get; set;}
+        public ICollection<Book>? Books { get; set;}
 
         public Wishlist(string id)
         {
             Id = id;
             Books = new List<Book>();
         }
+/*
+        public Wishlist(string id, ICollection<Book> books)
+        {
+            Id = id;
+            Books = books;
+        }*/
+
+        public Wishlist() { }
     }
 }

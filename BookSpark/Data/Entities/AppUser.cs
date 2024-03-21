@@ -19,8 +19,6 @@ namespace BookSpark.Data.Entities
             Wishlist = wishList;
         }
 
-        public AppUser()
-        {
-        }
+        public AppUser() { }
     }
 }

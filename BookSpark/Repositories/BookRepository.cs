@@ -50,12 +50,14 @@ namespace BookSpark.Repositories
 
         public Book Get(int id)
         {
-            var book = context.Books.Include("Author").Include("Genre").FirstOrDefault(x => x.Id == id);
-            if (book is null)
+            foreach (var book in context.Books)
             {
-                throw new ArgumentException("No book exists with this id");
+                if (book.Id == id)
+                {
+                    return book;
+                }
             }
-            return book;
+            throw new ArgumentException("No books!");
         }
 
         public IEnumerable<Book> GetAll()

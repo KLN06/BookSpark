@@ -44,8 +44,7 @@
                                         <a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Delete</a>
                                     </button>
                                     <button>
-                                        <a asp-controller="Wishlist" asp-action="Add" 
-                                        asp-route-id="@book.Id">Add to wishlist</a>
+                                        <a asp-controller="Wishlist" asp-action="Add" asp-route-bookId="@book.Id">Add to wishlist</a>
                                     </button>
                                 </div>
                                 <small class="text-muted">@book.Author.Name</small>

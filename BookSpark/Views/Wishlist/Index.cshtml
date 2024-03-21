@@ -22,8 +22,6 @@
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">
-            @if(Model is not null)
-            {
                 @foreach (var book in Model)
                 {
                     <div class="col-md-4">
@@ -37,7 +35,7 @@
                                             <a asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id">Detail</a>
                                         </button>
                                         <button>
-                                            <a asp-controller="Wishlist" asp-action="Remove" asp-route-id="@book.Id">Remove</a>
+                                            <a asp-controller="Wishlist" asp-action="Remove" asp-route-bookId="@book.Id">Remove</a>
                                         </button>
                                     </div>
                                     <small class="text-muted">@book.Author.Name</small>
@@ -47,8 +45,6 @@
                         </div>
                     </div>
                 }
-            }
-           
         </div>
     </div>
 </div>

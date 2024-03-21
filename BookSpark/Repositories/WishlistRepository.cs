@@ -45,17 +45,26 @@ namespace BookSpark.Repositories
 
         public Wishlist Get(string id)
         {
-            var wishlist = context.Wishlist.FirstOrDefault(x => x.Id == id);
-            if (wishlist is null)
+            /*var wishlist1 = context.Wishlist.First(x => x.Id == id);*/
+
+            foreach(var wishlist in context.Wishlist)
+            {
+                if(wishlist.Id == id)
+                {
+                    return wishlist;
+                }
+            }
+            throw new ArgumentException("No books in wishlist!");
+            /*if (wishlist is null)
             {
                 throw new ArgumentException("No books in your wishlist");
             }
-            return wishlist;
+            return wishlist;*/
         }
         public IEnumerable<Book> GetAll(string id)
         {
             var wishlist = Get(id);
-            return wishlist.Books.ToList();
+            return wishlist.Books?.ToList() ?? new List<Book>();
         }
     }
 }
