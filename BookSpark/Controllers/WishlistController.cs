@@ -11,9 +11,8 @@ namespace BookSpark.Controllers
     {
         private readonly IWishlistService wishlistService;
         private readonly UserManager<AppUser> userManager;
-        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public WishlistController(IWishlistService wishlistService, UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor)
+        public WishlistController(IWishlistService wishlistService, UserManager<AppUser> userManager)
         {
             this.wishlistService = wishlistService;
             this.userManager = userManager;
@@ -30,13 +29,13 @@ namespace BookSpark.Controllers
             return View(books.ToList());
         }
 
-        public async Task<IActionResult> Add(int bookId)
+        public IActionResult Add(int bookId)
         {
             wishlistService.Add(bookId);
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Remove(Book book)
+        public IActionResult Remove(Book book)
         {
             wishlistService.Remove(book.Id);
             return RedirectToAction(nameof(Index));

@@ -1,6 +1,7 @@
 ﻿using BookSpark.Data;
 using BookSpark.Data.Entities;
 using BookSpark.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookSpark.Repositories
 { 
@@ -25,7 +26,12 @@ namespace BookSpark.Repositories
 
         public Genre Get(int id)
         {
-            return context.Genres.FirstOrDefault(genre => genre.Id == id);
+            var genre = context.Genres.FirstOrDefault(genre => genre.Id == id);
+            if (genre is null)
+            {
+                throw new ArgumentException("Genre cannot be null");
+            }
+            return genre;
         }
         public void Delete(int id)
         {
