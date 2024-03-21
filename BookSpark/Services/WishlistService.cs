@@ -13,22 +13,26 @@ namespace BookSpark.Services
         {
             this.wishlistRepository = wishlistRepository;
         }
-        public void Add(int bookId, string wishlistId)
+        public void Add(int bookId)
         {
-            wishlistRepository.Add(bookId, wishlistId);
+            wishlistRepository.Add(bookId);
         }
 
-        public void Remove(int bookId, string wishlistId)
+        public void Remove(int bookId)
         {
-            wishlistRepository.Remove(bookId, wishlistId);
+            wishlistRepository.Remove(bookId);
         }
-        public IEnumerable<BookViewModel> GetAll(string wishlistId)
+
+        public async Task<IEnumerable<Book>> GetAll(string userId)
         {
-            var bookEntities = wishlistRepository.GetAll(wishlistId);
-
-            var books = bookEntities.Select(book => new BookViewModel(book)).ToList();
-
+            var books = await wishlistRepository.GetAll(userId);
             return books;
+        }
+
+
+        public string GetUserId()
+        {
+            return wishlistRepository.GetUserId();
         }
     }
 }

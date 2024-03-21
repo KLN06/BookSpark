@@ -7,14 +7,13 @@
 @{
 }
 
-@model IEnumerable<BookViewModel>
+@model List<Book>
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">My wishlist</h1>
         <p class="lead text-muted"></p>
         <p>
-            <a href="#" class="btn btn-primary my-2">Main call to action</a>
-            <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+            <a asp-controller="Book" asp-action="Index" class="btn btn-primary">Book catalog</a>
         </p>
     </div>
 </section>
@@ -22,6 +21,8 @@
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">
+            @if(Model.Count != 0)
+            {
                 @foreach (var book in Model)
                 {
                     <div class="col-md-4">
@@ -38,17 +39,25 @@
                                             <a asp-controller="Wishlist" asp-action="Remove" asp-route-bookId="@book.Id">Remove</a>
                                         </button>
                                     </div>
-                                    <small class="text-muted">@book.Author.Name</small>
-                                    <small class="text-muted">@book.Genre.Name</small>
+                                    <small class="text-muted">@book.GenreId</small>
+                                    <small class="text-muted">@book.AuthorId</small>
                                 </div>
                             </div>
                         </div>
                     </div>
                 }
+            }
+            else
+            {
+                <div class="lead text-muted">You have no books added to your wishlist yet!</div>
+
+            }
+           
         </div>
     </div>
 </div>
 
 </main>
-
-<a asp-controller="Book" asp-action="Add" class="btn btn-primary">Add book</a>
+<section class="jumbotron text-center">
+<a asp-controller="Book" asp-action="Index" class="btn btn-primary">Add book</a>
+</section>
