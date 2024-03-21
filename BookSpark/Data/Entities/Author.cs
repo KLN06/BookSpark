@@ -28,9 +28,6 @@ namespace BookSpark.Data.Entities
         //Birthdate = birthdate;
         // Biography = biography;
         //}
-
-        public Author()
-        { }
         public Author(string name, DateTime? birthdate, string? biography, ICollection<Book>? books)
         {
             Name = name;

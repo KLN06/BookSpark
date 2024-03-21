@@ -42,6 +42,5 @@ namespace BookSpark.Data.Entities
             AuthorId = authorId;
             ImageLink = imageLink;
         }
-        public Book() { }
     }
 }

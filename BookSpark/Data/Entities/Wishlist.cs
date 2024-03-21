@@ -31,7 +31,5 @@ namespace BookSpark.Data.Entities
             Id = id;
             Books = books;
         }*/
-
-        public Wishlist() { }
     }
 }
