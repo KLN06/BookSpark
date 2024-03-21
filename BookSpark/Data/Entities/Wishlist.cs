@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BookSpark.Data.Entities
 {
@@ -9,9 +10,19 @@ namespace BookSpark.Data.Entities
 
         public List<Book>? Books { get; set;}
 
-        public Wishlist(string id)
+        [ForeignKey("AppUser")]
+        public string AppUserId { get; set; }
+
+        public AppUser AppUser { get; set; }
+
+        public Wishlist()
+        { 
+        }
+        public Wishlist(string userAppId, AppUser appuser, string wishlistId)
         {
-            Id = id;
+            Id = wishlistId;
+            AppUser = appuser;
+            AppUserId = userAppId;
             Books = new List<Book>();
         }
     }

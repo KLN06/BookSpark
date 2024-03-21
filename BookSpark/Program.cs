@@ -39,7 +39,7 @@ builder.Services.AddScoped<IGenreRepository, GenreRepository>();
 builder.Services.AddScoped<IGenreService, GenreService>();
 builder.Services.AddScoped<IWishlistRepository, WishlistRepository>();
 builder.Services.AddScoped<IWishlistService, WishlistService>();
-
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddRazorPages();
 var app = builder.Build();
 

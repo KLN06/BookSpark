@@ -2,60 +2,106 @@
 using BookSpark.Data;
 using BookSpark.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using NuGet.Protocol.Plugins;
+using BookSpark.Models.BookViewModels;
+using System.Net;
 
 namespace BookSpark.Repositories
 {
     public class WishlistRepository : IWishlistRepository
     {
         private readonly ApplicationDbContext context;
-        private readonly IBookRepository bookRepository;
+        private readonly UserManager<AppUser> userManager;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public WishlistRepository(ApplicationDbContext context,IBookRepository bookRepository)
+        public WishlistRepository(ApplicationDbContext context,UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             this.context = context;
-            this.bookRepository = bookRepository;
+            this.userManager = userManager;
+            this.httpContextAccessor = httpContextAccessor;
         }
-        public void Add(int bookId, string wishlistId)
+        public async Task Add(int bookId)
         {
-            var wishlist = Get(wishlistId);
-            var book = bookRepository.Get(bookId);
-            // променлива, която проверява дали книгата вече се съдържа в списъка ни с книги
-            bool isInWishlist = false;
-            /*foreach(var bookItem in wishlist.Books)
+            string userId = GetUserId();
+            if (string.IsNullOrEmpty(userId))
             {
-                if (bookItem.Id == bookId)
-                {
-                    isInWishlist = true;
-                }
-            }*/
-            if(!isInWishlist)
-            {
-                wishlist.Books.Add(book);
-                context.SaveChanges();
+                throw new Exception("user is not logged-in");
             }
-            
-        }
-        public void Remove(int bookId, string wishlistId)
-        {
-            var wishList = Get(wishlistId);
-            var book = bookRepository.Get(bookId);
-            wishList.Books.Remove(book);
-            context.SaveChanges();
-        }
-
-        public Wishlist Get(string id)
-        {
-            var wishlist = context.Wishlist.FirstOrDefault(x => x.Id == id);
+            Wishlist? wishlist = await GetWishlist(userId);
             if (wishlist is null)
             {
-                throw new ArgumentException("No books in your wishlist");
+                var user = context.Users.Find(userId);
+                wishlist = new Wishlist(userId, user, Guid.NewGuid().ToString());
+                context.Wishlist.Add(wishlist);
             }
-            return wishlist;
+            context.SaveChanges();
+
+            var wishlistItem = context.Wishlist.FirstOrDefault(a => a.Id == wishlist.Id && a.Books.Any(b => b.Id == bookId));
+            if (wishlistItem is not null)
+            {
+                //message   
+            }
+            else
+            {
+                var book = context.Books
+                    .Include("Author")
+                    .Include("Genre")
+                    .FirstOrDefault(b => b.Id == bookId);
+                wishlist.Books.Add(book);
+            }
+            context.SaveChanges();
+
         }
-        public IEnumerable<Book> GetAll(string id)
+        public async Task Remove(int bookId)
         {
-            var wishlist = Get(id);
-            return wishlist.Books.ToList();
+            string userId = GetUserId();
+            if (string.IsNullOrEmpty(userId))
+            {
+                throw new Exception("user is not logged-in");
+            }
+            var wishlist = await GetWishlist(userId);
+            if (wishlist is null)
+            {
+                throw new ArgumentException("Wishlist is empty");
+            }
+
+            var wishlistItem = context.Wishlist.FirstOrDefault(a => a.Id == wishlist.Id && a.Books.Any(b => b.Id == bookId));
+            if (wishlistItem is not null)
+            {
+                var book = context.Books.Find(bookId);
+                wishlist.Books.Remove(book);
+            }
+            else
+            {
+                throw new ArgumentException("Book does not exist");
+            }
+            context.SaveChanges();
+        }
+        public async Task<Wishlist>? GetWishlist(string userId)
+        {
+            foreach(var wishlist in context.Wishlist.Include(w => w.AppUser).Include(w => w.Books))
+            {
+                if(wishlist.AppUserId == userId)
+                {
+                    return wishlist;
+                }
+            }
+            return null;
+            
+        }
+
+        public string GetUserId()
+        {
+            var principal = httpContextAccessor.HttpContext.User;
+            string userId = userManager.GetUserId(principal);
+            return userId;
+        }
+
+        public async Task<IEnumerable<Book>> GetAll(string userId)
+        {
+            var wishlist = await GetWishlist(userId);
+            return wishlist?.Books ?? Enumerable.Empty<Book>();
         }
     }
 }

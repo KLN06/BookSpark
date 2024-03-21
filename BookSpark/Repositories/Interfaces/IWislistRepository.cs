@@ -4,9 +4,10 @@ namespace BookSpark.Repositories.Interfaces
 {
     public interface IWishlistRepository
     {
-        void Add(int bookId, string wishListId);
-        void Remove(int bookId, string wishListId);
-        public Wishlist Get(string id);
-        public IEnumerable<Book> GetAll(string id);
+        Task Add(int bookId);
+        Task Remove(int bookId);
+        public string GetUserId();
+        public Task<Wishlist>? GetWishlist(string userId);
+        public Task<IEnumerable<Book>> GetAll(string userId);
     }
 }

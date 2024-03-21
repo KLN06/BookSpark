@@ -1,13 +1,16 @@
-﻿using BookSpark.Models.BookViewModels;
+﻿using BookSpark.Data.Entities;
+using BookSpark.Models.BookViewModels;
 
 namespace BookSpark.Services.Interfaces
 {
     public interface IWishlistService
     {
-        void Add(int bookId, string wishlistId);
+        void Add(int bookId);
 
-        IEnumerable<BookViewModel> GetAll(string wishlistId);
+        public Task<IEnumerable<Book>> GetAll(string userId);
 
-        void Remove(int bookId, string wishlistId);
+        void Remove(int bookId);
+
+        public string GetUserId();
     }
 }

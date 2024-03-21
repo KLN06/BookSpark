@@ -5,18 +5,11 @@ namespace BookSpark.Data.Entities
 {
     public class AppUser : IdentityUser
     {
-
-        [ForeignKey("Wishlist")]
-        public string WishlistId { get; set; }
-
-        public Wishlist? Wishlist { get; set; }
-
-        public AppUser(string id, string email, string username, Wishlist wishList)
+        public AppUser(string id, string email, string username)
         {
             Id = id;
             Email = email;
             UserName = username;
-            Wishlist = wishList;
         }
 
         public AppUser()

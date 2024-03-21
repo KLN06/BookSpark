@@ -10,45 +10,35 @@ namespace BookSpark.Controllers
     public class WishlistController : Controller
     {
         private readonly IWishlistService wishlistService;
-        private readonly IBookService bookService;
         private readonly UserManager<AppUser> userManager;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public WishlistController(IWishlistService wishlistService, UserManager<AppUser> userManager)
+        public WishlistController(IWishlistService wishlistService, UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor)
         {
             this.wishlistService = wishlistService;
             this.userManager = userManager;
         }
         public async Task<IActionResult> Index()
         {
-            var user = await userManager.GetUserAsync(User);
-            var wishlistId = user.WishlistId;
-            var books = wishlistService.GetAll(wishlistId).ToList();
-            return View(books);
+            var userId = wishlistService.GetUserId();
+            var books = await wishlistService.GetAll(userId);
+            if (books == null)
+            {
+                // обработка на случая, когато няма книги
+                return View(new List<Book>());
+            }
+            return View(books.ToList());
         }
 
-        /*public IActionResult Add()
-        {
-            return RedirectToAction(nameof(Index));
-        }*/
-
-     //   [HttpPost]
         public async Task<IActionResult> Add(int bookId)
         {
-            bookId++;
-            var user = await userManager.GetUserAsync(User);
-            var wishlistId = user.WishlistId;
-
-            wishlistService.Add(bookId, wishlistId);
+            wishlistService.Add(bookId);
             return RedirectToAction(nameof(Index));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Remove(BookViewModel book)
+        public async Task<IActionResult> Remove(Book book)
         {
-            var user = await userManager.GetUserAsync(User);
-            var wishlistId = user.WishlistId;
-
-            wishlistService.Remove(book.Id, wishlistId);
+            wishlistService.Remove(book.Id);
             return RedirectToAction(nameof(Index));
         }
 
