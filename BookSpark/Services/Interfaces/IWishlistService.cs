@@ -7,7 +7,7 @@ namespace BookSpark.Services.Interfaces
     {
         void Add(int bookId);
 
-        public Task<IEnumerable<BookViewModel>> GetAll(string userId);
+        public Task<IEnumerable<Book>> GetAll(string userId);
 
         void Remove(int bookId);
 
