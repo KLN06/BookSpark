@@ -1,11 +1,9 @@
-﻿using AspNetCore;
-using BookSpark.Data.Entities;
+﻿using BookSpark.Data.Entities;
 using BookSpark.Models.BookViewModels;
 using BookSpark.Services;
 using BookSpark.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Mysqlx;
 using NuGet.Common;
 
 namespace BookSpark.Controllers
@@ -23,10 +21,6 @@ namespace BookSpark.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = wishlistService.GetUserId();
-            if(userId == null)
-            {
-                return RedirectToAction(nameof(WishlistError)); 
-            }
             var books = await wishlistService.GetAll(userId);
             if (books == null)
             {
@@ -46,11 +40,6 @@ namespace BookSpark.Controllers
         {
             wishlistService.Remove(bookId);
             return RedirectToAction(nameof(Index));
-        }
-
-        public IActionResult WishlistError()
-        {
-            return View();
         }
     }
 }
