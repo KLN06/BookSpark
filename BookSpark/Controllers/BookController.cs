@@ -14,10 +14,20 @@ namespace BookSpark.Controllers
         {
             this.bookService = bookService;
         }
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
-            var books = bookService.GetAll().ToList();
-            return View(books);
+            if(searchString is null)
+            {
+                var books = bookService.GetAll().ToList();
+                return View(books);
+            }
+            else
+            {
+                searchString = searchString.ToUpper();
+                var books = bookService.GetAll()
+                    .Where(b => b.Title.ToUpper() == searchString || b.AuthorName.ToUpper() == searchString || b.GenreName.ToUpper() == searchString).ToList();
+                return View(books);
+            }
         }
         public IActionResult Add()
         {

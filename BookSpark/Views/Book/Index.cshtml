@@ -31,46 +31,63 @@
     </div>
 </section>
 
-<input id="searchBooks" />
+<form asp-controller="Book" asp-action="Index" method="get">
+    <div class="form-floating mb-3">
+        <input id="search" name="searchString" class="form-control" autocomplete="off" aria-required="true" placeholder="Search" />
+        <label for="search">Search</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>
+
 
 <div id="catalog" class="album py-5 bg-light">
     <div class="container">
         <div class="row">
-@foreach (var book in Model)
-{
-    
+            @{
+                int count = 0;
+            }
+                @foreach (var book in Model)
+                {
+                    
 
-                <div class="col-md-4">
-                    <div class="card mb-4 box-shadow">
-                        <img src=@book.ImageLink alt="The image is not found">
-                        <div class="card-body">
-                            <p class="card-text">@book.Title</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button>
-                                        <a asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id">Detail</a>
-                                    </button>
-                                    <button>
-                                        <a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id">Edit</a>
-                                    </button>
-                                    <button>
-                                        <a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Delete</a>
-                                    </button>
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img src=@book.ImageLink alt="The image is not found">
+                            <div class="card-body">
+                                <p class="card-text">@book.Title</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                    @{
+                                        count++; //if there are any books the count increases
+                                    }
+                                        <button>
+                                            <a asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id">Detail</a>
+                                        </button>
+                                        <button>
+                                            <a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id">Edit</a>
+                                        </button>
+                                        <button>
+                                            <a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Delete</a>
+                                        </button>
                                         <a asp-controller="Wishlist" asp-action="Add" asp-route-bookId="@book.Id">
                                             <img id="addtowishlist" src="https://cdn4.iconfinder.com/data/icons/ui-elements-29/64/Add-Bookmark-save-wishlist-ui-512.png" />
                                         </a>
+                                    </div>
+                                    <small class="text-muted">@book.Author.Name</small>
+                                    <small class="text-muted">@book.Genre.Name</small>
                                 </div>
-                                <small class="text-muted">@book.Author.Name</small>
-                                <small class="text-muted">@book.Genre.Name</small>
                             </div>
                         </div>
                     </div>
-                </div>
-}
+                }
+            @if(count == 0)
+            {
+                <h1>
+                    No results @*if the count hasnt increased and is still 0 that means there are no books => no results*@
+                </h1>
+            }
         </div>
     </div>
 </div>
-
-</main>
 
 <a asp-controller="Book" asp-action="Add" class="btn btn-primary">Add book</a>
