@@ -51,7 +51,7 @@ namespace BookSpark.Repositories
         public Book Get(int id)
         {
             var book = context.Books.Include("Author").Include("Genre").FirstOrDefault(x => x.Id == id);
-            if (book is null)
+            if (book is not null)
             {
                 if (book.Id == id)
                 {

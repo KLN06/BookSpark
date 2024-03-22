@@ -1,31 +1,70 @@
-﻿@using BookSpark.Models.BookViewModels
+﻿@using BookSpark.Data.Entities
+@using BookSpark.Models.BookViewModels
+@using Microsoft.AspNetCore.Identity
 @{
     ViewData["Title"] = "Home Page";
 }
+
+@inject SignInManager<AppUser> SignInManager
+@inject UserManager<AppUser> UserManager
+
 <style>
-    html{
-        background-color:black;
+    
+    html, body, main{
+        background-color: #737373;
+    }
+    .image{
+        text-align:center;
+    }
+    #footer{
+        background-color:white;
     }
 
-    ."btn btn-primary my-2"{
-        height:200%;
-        width:
+    #hi {
+        display: flex;
+        justify-content: center;
+    }
+    #booksbtn{
+        color: #737373;
+        background-color: white;
+        border-color:white;
+        width:50%;
+        transition: all 0.3s ease;
+        border-radius:20px;
+    }
+    #booksbtn:hover{
+        transform: scale(1.1);
+            box-shadow: 0 15px 30px 10px rgba(0, 0, 0, 0.5);
+    }
+    .btn-secondary{
+        border-radius: 10px;
+        color: #737373;
+        background-color: white;
+    }
+    .btn-secondary:hover{
+            color: #737373;
+            background-color: white;
+            box-shadow: 0 15px 30px 10px rgba(0, 0, 0, 0.5);
     }
 </style>
 <main class="main" role="main">
 
     <section class="jumbotron text-center">
+        <p>
+            <div class="image">
+                <img src="https://i.ibb.co/vY6cbqG/Book-Spark.png" />
+            </div>
+        </p>
         <div class="container">
-            <h1 class="jumbotron-heading">BookSpark</h1>
-            <p>
-                <a href="#" class="btn btn-primary my-2">Books</a>
-                <a href="#" class="btn btn-secondary my-2">Log in</a>
-                <a href="#" class="btn btn-secondary my-2">Register</a>
+            <p id="hi">
+                <a id="booksbtn" class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Books</a>
+
+                @if (!SignInManager.IsSignedIn(User))
+                {
+                    <partial name="_LoginPartial" />
+                }
             </p>
         </div>
     </section>
-    <p>
-        <img src="https://i.ibb.co/4Y7b108/Logo-black.png" />
-    </p>
 </main>
 

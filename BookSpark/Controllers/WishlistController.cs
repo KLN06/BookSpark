@@ -41,6 +41,5 @@ namespace BookSpark.Controllers
             wishlistService.Remove(bookId);
             return RedirectToAction(nameof(Index));
         }
-
     }
 }

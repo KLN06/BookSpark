@@ -1042,10 +1042,9 @@
   padding-right: 3rem !important;
   padding-left: 3rem !important;
 }
-
 .py-0 {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 .py-1 {
@@ -1068,10 +1067,10 @@
   padding-bottom: 1.5rem !important;
 }
 
-.py-5 {
+/*.py-5 {
   padding-top: 3rem !important;
   padding-bottom: 3rem !important;
-}
+}*/
 
 .pt-0 {
   padding-top: 0 !important;

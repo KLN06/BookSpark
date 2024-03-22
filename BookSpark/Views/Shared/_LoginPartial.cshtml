@@ -4,7 +4,39 @@
 @inject SignInManager<AppUser> SignInManager
 @inject UserManager<AppUser> UserManager
 
-<ul class="navbar-nav">
+<style>
+    #login{
+        width: 67%;
+        background-color:white;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+    }    
+    #login:hover{
+        background-color: white;
+        transform: scale(1.1);
+        box-shadow: 0 15px 30px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    #register {
+        width: 67%;
+        background-color: white;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+    }
+
+    #register:hover {
+        background-color: white;
+        transform: scale(1.1);
+        box-shadow: 0 15px 30px 10px rgba(0, 0, 0, 0.5);
+    }
+    #authnav{
+        display: flex;
+        justify-content: center;
+        margin-left: 25%;
+    }
+</style>
+
+<ul id ="authnav" class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
     <li class="nav-item">
@@ -18,11 +50,8 @@
 }
 else
 {
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
-    </li>
+        <a class="btn btn-secondary my-2 nav-item nav-link text-dark" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+
+        <a class="btn btn-secondary my-2 nav-item nav-link text-dark" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
 }
 </ul>
