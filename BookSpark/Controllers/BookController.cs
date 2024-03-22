@@ -1,4 +1,5 @@
-﻿using BookSpark.Models.BookViewModels;
+﻿using BookSpark.Data.Enums;
+using BookSpark.Models.BookViewModels;
 using BookSpark.Services;
 using BookSpark.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -20,18 +21,30 @@ namespace BookSpark.Controllers
         }
         public IActionResult Add()
         {
+            if (!User.IsInRole(Roles.Admin.ToString()))
+            {
+                return RedirectToAction(nameof(BookAdminError));
+            }
             return View();
         }
 
         [HttpPost]
         public IActionResult Add(AddBookViewModel book)
         {
+            if (!User.IsInRole(Roles.Admin.ToString()))
+            {
+                return RedirectToAction(nameof(BookAdminError));
+            }
             bookService.Add(book);
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Delete(int id)
         {
+            if (!User.IsInRole(Roles.Admin.ToString()))
+            {
+                return RedirectToAction(nameof(BookAdminError));
+            }
             bookService.Delete(id);
 
             return RedirectToAction(nameof(Index));
@@ -39,6 +52,10 @@ namespace BookSpark.Controllers
 
         public IActionResult Edit(int id)
         {
+            if (!User.IsInRole(Roles.Admin.ToString()))
+            {
+                return RedirectToAction(nameof(BookAdminError));
+            }
             var bookViewModel = bookService.Get(id);
             var editBookViewModel = new EditBookViewModel(
                 bookViewModel.Title,
@@ -54,6 +71,10 @@ namespace BookSpark.Controllers
         [HttpPost]
         public IActionResult Edit(EditBookViewModel book)
         {
+            if (!User.IsInRole(Roles.Admin.ToString()))
+            {
+                return RedirectToAction(nameof(BookAdminError));
+            }
             bookService.Edit(book);
 
             return RedirectToAction(nameof(Index));
@@ -61,8 +82,21 @@ namespace BookSpark.Controllers
 
         public IActionResult Detail(int id)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction(nameof(BookError));
+            }
             var book = bookService.Get(id);
             return View(book);
+        }
+
+        public IActionResult BookError()
+        {
+            return View();
+        }
+        public IActionResult BookAdminError()
+        {
+            return View();
         }
     }
 }

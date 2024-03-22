@@ -61,9 +61,19 @@
                         <li class="nav-item">
                             <a class="boton nav-link text-dark" asp-area="" asp-controller="Author" asp-action="Add">Add author</a>
                         </li>
+
                     </ul>
                 </div>
             </div>
+
+            @* <form asp-area="" asp-controller="User" asp-action="SetRole" method="post">
+                <div class="form-floating mb-3">
+                    <input id="adminkey" name="adminKey" class="form-control" autocomplete="off" aria-required="true" placeholder="Admin Key" />
+                    <label for="adminkey">Admin Key</label>
+                    //<span asp-validation-for="adminKey" class="text-danger"></span>//
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form> *@
             <partial name = "_LoginPartial" />
         </nav>
     </header>

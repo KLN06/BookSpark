@@ -21,6 +21,10 @@ namespace BookSpark.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = wishlistService.GetUserId();
+            if(userId == null)
+            {
+                return RedirectToAction(nameof(WishlistError));
+            }
             var books = await wishlistService.GetAll(userId);
             if (books == null)
             {
@@ -32,14 +36,27 @@ namespace BookSpark.Controllers
 
         public IActionResult Add(int bookId)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction(nameof(WishlistError));
+            }
             wishlistService.Add(bookId);
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Remove(int bookId)
         {
+            if (!User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction(nameof(WishlistError));
+            }
             wishlistService.Remove(bookId);
             return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult WishlistError()
+        {
+            return View();
         }
     }
 }
