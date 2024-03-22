@@ -18,7 +18,8 @@ namespace BookSpark.Data
                 var roleName = role.ToString();
 
                 var roleExists = dbContext.Roles.Any(roleEntity => roleEntity.Name == role);
-                if (!roleExists){
+                if (!roleExists)
+                {
                     var identityRole = new IdentityRole(roleName)
                     {
                         NormalizedName = roleName.ToUpper()
