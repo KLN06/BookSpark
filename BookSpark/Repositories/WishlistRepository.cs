@@ -90,7 +90,8 @@ namespace BookSpark.Repositories
                 context.Entry(book).Reference(b => b.Author).Load();
                 context.Entry(book).Reference(b => b.Genre).Load();
             }
-            return wishlist;            
+            return wishlist;
+
         }
 
         public string GetUserId()
