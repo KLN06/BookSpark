@@ -4,6 +4,7 @@ using BookSpark.Services;
 using BookSpark.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Common;
 
 namespace BookSpark.Controllers
 {
@@ -11,9 +12,8 @@ namespace BookSpark.Controllers
     {
         private readonly IWishlistService wishlistService;
         private readonly UserManager<AppUser> userManager;
-        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public WishlistController(IWishlistService wishlistService, UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor)
+        public WishlistController(IWishlistService wishlistService, UserManager<AppUser> userManager)
         {
             this.wishlistService = wishlistService;
             this.userManager = userManager;
@@ -30,13 +30,13 @@ namespace BookSpark.Controllers
             return View(books.ToList());
         }
 
-        public async Task<IActionResult> Add(int bookId)
+        public IActionResult Add(int bookId)
         {
             wishlistService.Add(bookId);
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Remove(int bookId)
+        public IActionResult Remove(int bookId)
         {
             wishlistService.Remove(bookId);
             return RedirectToAction(nameof(Index));
