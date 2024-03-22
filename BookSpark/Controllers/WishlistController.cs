@@ -28,7 +28,7 @@ namespace BookSpark.Controllers
             var books = await wishlistService.GetAll(userId);
             if (books == null)
             {
-                // обработка на случая, когато няма 
+                // обработка на случая
                 return View(new List<Book>());
             }
             return View(books.ToList());
