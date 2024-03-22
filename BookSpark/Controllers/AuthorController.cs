@@ -81,7 +81,7 @@ namespace BookSpark.Controllers
         }
         public IActionResult Detail(int id)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.Identity.IsAuthenticated)
             {
                 return RedirectToAction(nameof(AuthorsAdminError));
             }
