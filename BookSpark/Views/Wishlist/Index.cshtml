@@ -7,7 +7,7 @@
 @{
 }
 
-@model List<BookViewModel>
+@model List<Book>
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">My wishlist</h1>
@@ -39,8 +39,8 @@
                                             <a asp-controller="Wishlist" asp-action="Remove" asp-route-bookId="@book.Id">Remove</a>
                                         </button>
                                     </div>
-                                    <small class="text-muted">@book.Genre.Name</small>
-                                    <small class="text-muted">@book.Author.Name</small>
+                                    <small class="text-muted">@book.GenreId</small>
+                                    <small class="text-muted">@book.AuthorId</small>
                                 </div>
                             </div>
                         </div>
