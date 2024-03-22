@@ -4,6 +4,7 @@ using BookSpark.Services;
 using BookSpark.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Common;
 
 namespace BookSpark.Controllers
 {
@@ -35,9 +36,9 @@ namespace BookSpark.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Remove(Book book)
+        public IActionResult Remove(int bookId)
         {
-            wishlistService.Remove(book.Id);
+            wishlistService.Remove(bookId);
             return RedirectToAction(nameof(Index));
         }
 

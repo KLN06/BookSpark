@@ -23,10 +23,11 @@ namespace BookSpark.Services
             wishlistRepository.Remove(bookId);
         }
 
-        public async Task<IEnumerable<Book>> GetAll(string userId)
+        public async Task<IEnumerable<BookViewModel>> GetAll(string userId)
         {
             var books = await wishlistRepository.GetAll(userId);
-            return books;
+            var bookModels = books.Select(book => new BookViewModel(book)).ToList();
+            return bookModels;
         }
 
 

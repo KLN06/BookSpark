@@ -80,15 +80,17 @@ namespace BookSpark.Repositories
         }
         public async Task<Wishlist>? GetWishlist(string userId)
         {
-            foreach(var wishlist in context.Wishlist.Include(w => w.AppUser).Include(w => w.Books))
+            var wishlist = context.Wishlist
+                          .Include(w => w.AppUser)
+                          .Include(w => w.Books)
+                          .First(w => w.AppUserId == userId);
+
+            foreach (var book in wishlist.Books)
             {
-                if(wishlist.AppUserId == userId)
-                {
-                    return wishlist;
-                }
+                context.Entry(book).Reference(b => b.Author).Load();
+                context.Entry(book).Reference(b => b.Genre).Load();
             }
-            return null;
-            
+            return wishlist;            
         }
 
         public string GetUserId()
