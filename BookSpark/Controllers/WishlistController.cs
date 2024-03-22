@@ -36,11 +36,10 @@ namespace BookSpark.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public async Task<IActionResult> Remove(Book book)
+        public async Task<IActionResult> Remove(int bookId)
         {
-            wishlistService.Remove(book.Id);
+            wishlistService.Remove(bookId);
             return RedirectToAction(nameof(Index));
         }
-
     }
 }

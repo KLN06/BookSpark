@@ -1,26 +1,34 @@
 ﻿@using BookSpark.Models.BookViewModels
 @using BookSpark.Data.Entities
 
+
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
-
 @model IEnumerable<BookViewModel>
+<style>
+    main{
+        background-color: white;
+    }
+    #addtowishlist{
+        max-height:50%;
+        max-width:50%;
+    }
+</style>
 
 <section class="jumbotron text-center">
     <div class="container">
         <h1 class="jumbotron-heading">Book catalog</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-        <p>
+       @*  <p>
             <a href="#" class="btn btn-primary my-2">Main call to action</a>
             <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
+        </p> *@
     </div>
 </section>
 
-<div class="album py-5 bg-light">
+<div id="catalog" class="album py-5 bg-light">
     <div class="container">
         <div class="row">
 @foreach (var book in Model)
@@ -43,9 +51,9 @@
                                     <button>
                                         <a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Delete</a>
                                     </button>
-                                    <button>
-                                        <a asp-controller="Wishlist" asp-action="Add" asp-route-bookId="@book.Id">Add to wishlist</a>
-                                    </button>
+                                        <a asp-controller="Wishlist" asp-action="Add" asp-route-bookId="@book.Id">
+                                            <img id="addtowishlist" src="https://cdn4.iconfinder.com/data/icons/ui-elements-29/64/Add-Bookmark-save-wishlist-ui-512.png" />
+                                        </a>
                                 </div>
                                 <small class="text-muted">@book.Author.Name</small>
                                 <small class="text-muted">@book.Genre.Name</small>
