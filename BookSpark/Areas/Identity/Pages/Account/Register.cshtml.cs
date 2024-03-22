@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using BookSpark.Models.BookViewModels;
+using BookSpark.Data.Enums;
 
 namespace BookSpark.Areas.Identity.Pages.Account
 {
@@ -81,6 +82,8 @@ namespace BookSpark.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, Roles.User.ToString());
+
                     await _signInManager.SignInAsync(user,isPersistent: false);
 
                     return LocalRedirect(returnUrl);

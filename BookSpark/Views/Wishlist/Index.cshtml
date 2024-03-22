@@ -36,7 +36,7 @@
                                             <a asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id">Detail</a>
                                         </button>
                                         <button>
-                                            <a asp-controller="Wishlist" asp-action="Remove" asp-route-id="@book.Id">Remove</a>
+                                            <a asp-controller="Wishlist" asp-action="Remove" asp-route-bookId="@book.Id">Remove</a>
                                         </button>
                                     </div>
                                     <small class="text-muted">@book.GenreId</small>
@@ -52,7 +52,6 @@
                 <div class="lead text-muted">You have no books added to your wishlist yet!</div>
 
             }
-           
         </div>
     </div>
 </div>

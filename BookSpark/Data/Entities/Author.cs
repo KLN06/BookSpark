@@ -37,5 +37,7 @@ namespace BookSpark.Data.Entities
             Birthdate = birthdate;
             Biography = biography;
         }
+
+        public Author() { }
     }
 }

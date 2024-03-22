@@ -12,8 +12,6 @@ namespace BookSpark.Data.Entities
             UserName = username;
         }
 
-        public AppUser()
-        {
-        }
+        public AppUser() { }
     }
 }

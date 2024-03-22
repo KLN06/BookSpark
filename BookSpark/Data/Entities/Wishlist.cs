@@ -8,7 +8,7 @@ namespace BookSpark.Data.Entities
         [Key]
         public string Id { get; set; }
 
-        public List<Book>? Books { get; set;}
+        public ICollection<Book>? Books { get; set;}
 
         [ForeignKey("AppUser")]
         public string AppUserId { get; set; }
@@ -25,5 +25,11 @@ namespace BookSpark.Data.Entities
             AppUserId = userAppId;
             Books = new List<Book>();
         }
+/*
+        public Wishlist(string id, ICollection<Book> books)
+        {
+            Id = id;
+            Books = books;
+        }*/
     }
 }
