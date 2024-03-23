@@ -30,6 +30,8 @@ namespace BookSpark.Data.Entities
         [Required]
         public string ImageLink { get; set; }
 
+        public ICollection<Wishlist> Wishlists { get; set; }
+
         public Book()
         { }
 

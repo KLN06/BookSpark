@@ -4,6 +4,7 @@ using BookSpark.Models.BookViewModels;
 using BookSpark.Repositories;
 using BookSpark.Services;
 using BookSpark.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Common;
@@ -14,15 +15,23 @@ namespace BookSpark.Controllers
     {
         private readonly IWishlistService wishlistService;
         private readonly UserManager<AppUser> userManager;
+        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public WishlistController(IWishlistService wishlistService, UserManager<AppUser> userManager)
+        public WishlistController(IWishlistService wishlistService, UserManager<AppUser> userManager,IHttpContextAccessor httpContextAccessor)
         {
             this.wishlistService = wishlistService;
             this.userManager = userManager;
+            this.httpContextAccessor = httpContextAccessor;
+        }
+        public string GetUserId()
+        {
+            var principal = httpContextAccessor.HttpContext.User;
+            string userId = userManager.GetUserId(principal);
+            return userId;
         }
         public async Task<IActionResult> Index()
         {
-            var userId = wishlistService.GetUserId();
+            var userId = GetUserId();
             if(userId == null)
             {
                 return RedirectToAction(nameof(WishlistError));
@@ -42,7 +51,8 @@ namespace BookSpark.Controllers
             {
                 return RedirectToAction(nameof(WishlistError));
             }
-            wishlistService.Add(bookId);
+            var userId = GetUserId();
+            wishlistService.Add(bookId, userId);
             return RedirectToAction(nameof(Index));
         }
 
@@ -52,7 +62,8 @@ namespace BookSpark.Controllers
             {
                 return RedirectToAction(nameof(WishlistError));
             }
-            wishlistService.Remove(bookId);
+            var userId = GetUserId();
+            wishlistService.Remove(bookId, userId);
             return RedirectToAction(nameof(Index));
         }
 

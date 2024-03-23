@@ -12,32 +12,21 @@ namespace BookSpark.Repositories
     public class WishlistRepository : IWishlistRepository
     {
         private readonly ApplicationDbContext context;
-        private readonly UserManager<AppUser> userManager;
-        private readonly IHttpContextAccessor httpContextAccessor;
 
-        public WishlistRepository(ApplicationDbContext context,UserManager<AppUser> userManager, IHttpContextAccessor httpContextAccessor)
+        public WishlistRepository(ApplicationDbContext context)
         {
             this.context = context;
-            this.userManager = userManager;
-            this.httpContextAccessor = httpContextAccessor;
         }
-        public async Task Add(int bookId)
+        public async Task Add(int bookId, string userId)
         {
-            string userId = GetUserId();
-
-            if (string.IsNullOrEmpty(userId))
-            {
-                throw new Exception("user is not logged-in");
-            }
-
             var wishlist = await GetWishlist(userId);
             if (wishlist is null)
             {
-                var user = context.Users.Find(userId);
+                var user = context.Users.FirstOrDefault(u => u.Id == userId);
                 wishlist = new Wishlist(userId, user, Guid.NewGuid().ToString());
                 context.Wishlist.Add(wishlist);
-            }
             context.SaveChanges();
+            }
 
             var wishlistItemExists = context.Wishlist
                 .FirstOrDefault(wishlistEntity => wishlistEntity.Id == wishlist.Id &&
@@ -54,22 +43,14 @@ namespace BookSpark.Repositories
             context.SaveChanges();
 
         }
-        public async Task Remove(int bookId)
+        public async Task Remove(int bookId, string userId)
         {
-            string userId = GetUserId();
-
-            if (string.IsNullOrEmpty(userId))
-            {
-                throw new Exception("user is not logged-in");
-            }
-
             var wishlist = await GetWishlist(userId);
 
             if (wishlist is null)
             {
-                throw new ArgumentException("Wishlist is empty");
+                throw new ArgumentException("Wishlist does not exist");
             }
-
             var wishlistItemExists = context.Wishlist.FirstOrDefault(a => a.Id == wishlist.Id && a.Books.Any(b => b.Id == bookId));
             if (wishlistItemExists is not null)
             {
@@ -92,14 +73,6 @@ namespace BookSpark.Repositories
                 }
             }
             return null;
-                      
-        }
-
-        public string GetUserId()
-        {
-            var principal = httpContextAccessor.HttpContext.User;
-            string userId = userManager.GetUserId(principal);
-            return userId;
         }
 
         public async Task<IEnumerable<Book>> GetAll(string userId)

@@ -20,16 +20,12 @@ namespace BookSpark.Data.Entities
         }
         public Wishlist(string userAppId, AppUser appuser, string wishlistId)
         {
-            Id = wishlistId;
-            AppUser = appuser;
             AppUserId = userAppId;
+            AppUser = appuser;
+            Id = wishlistId;
             Books = new List<Book>();
         }
-/*
-        public Wishlist(string id, ICollection<Book> books)
-        {
-            Id = id;
-            Books = books;
-        }*/
+
+        
     }
 }

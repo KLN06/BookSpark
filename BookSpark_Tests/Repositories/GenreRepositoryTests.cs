@@ -31,7 +31,7 @@ namespace BookSpark_Tests.Repositories
 
         #region Add
         [Test]
-        public void Add_NewGenre_AddsGenre()
+        public void GivenGenre_AddNewGenre_AddsGenre()
         {
             var genre = new Genre { Name = "New Genre" };
 
@@ -42,7 +42,7 @@ namespace BookSpark_Tests.Repositories
         }
 
         [Test]
-        public void Add_NullGenre_ThrowsException()
+        public void GivenNullGenre_NullGenre_ThrowsException()
         {
             var exception = Assert.Throws<ArgumentException>(() => genreRepository.Add(null), "Exception not thrown for non-existing genre ID");
             Assert.AreEqual("Genre cannot be null", exception.Message, "Exception message is different than expected");

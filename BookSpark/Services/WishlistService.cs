@@ -13,25 +13,27 @@ namespace BookSpark.Services
         {
             this.wishlistRepository = wishlistRepository;
         }
-        public void Add(int bookId)
+        public void Add(int bookId, string userId)
         {
-            wishlistRepository.Add(bookId);
+            if (string.IsNullOrEmpty(userId))
+            {
+                throw new Exception("user is not logged-in");
+            }
+            wishlistRepository.Add(bookId, userId);
         }
 
-        public void Remove(int bookId)
+        public void Remove(int bookId, string userId)
         {
-            wishlistRepository.Remove(bookId);
+            if (string.IsNullOrEmpty(userId))
+            {
+                throw new Exception("user is not logged-in");
+            }
+            wishlistRepository.Remove(bookId, userId);
         }
 
         public async Task<IEnumerable<Book>> GetAll(string userId)
         {
             return await wishlistRepository.GetAll(userId);
-        }
-
-
-        public string GetUserId()
-        {
-            return wishlistRepository.GetUserId();
         }
     }
 }
