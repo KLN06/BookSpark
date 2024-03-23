@@ -13,11 +13,15 @@
         background-color: white;
     }
     #addtowishlist{
-        max-height:50%;
-        max-width:50%;
+        max-height:100%;
+        max-width:75%;
     }
     #searchBooks{
         margin-left: 1rem;
+    }
+    #authorname{
+        margin-right: 10%;
+        min-width: 25%;
     }
 </style>
 
@@ -73,8 +77,8 @@
                                             <img id="addtowishlist" src="https://cdn4.iconfinder.com/data/icons/ui-elements-29/64/Add-Bookmark-save-wishlist-ui-512.png" />
                                         </a>
                                     </div>
-                                    <small class="text-muted">@book.Author.Name</small>
-                                    <small class="text-muted">@book.Genre.Name</small>
+                                    <small id="authorname" class="text-muted">@book.Author.Name</small>
+                                <small id="genrename">@book.Genre.Name</small>
                                 </div>
                             </div>
                         </div>
@@ -89,5 +93,3 @@
         </div>
     </div>
 </div>
-
-<a asp-controller="Book" asp-action="Add" class="btn btn-primary">Add book</a>

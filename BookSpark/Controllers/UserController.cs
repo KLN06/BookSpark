@@ -22,13 +22,20 @@ namespace BookSpark.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await userManager.FindByIdAsync(userId);
-            if (adminkey == "gakal123")
+            if(user == null)
             {
-                await userManager.AddToRoleAsync(user, Roles.Admin.ToString());
+                throw new ArgumentException("You are not logged in/registered!");
             }
+            else
+            {
+                if (adminkey == "gakal123")
+                {
+                    await userManager.AddToRoleAsync(user, Roles.Admin.ToString());
+                }
 
-            await signInManager.SignOutAsync();
-            await signInManager.SignInAsync(user, isPersistent: false);
+                await signInManager.SignOutAsync();
+                await signInManager.SignInAsync(user, isPersistent: false);
+            }
 
             return RedirectToAction("Index", "Home");
         }
@@ -38,11 +45,18 @@ namespace BookSpark.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await userManager.FindByIdAsync(userId);
 
-            await userManager.AddToRoleAsync(user, Roles.User.ToString());
-            await userManager.RemoveFromRoleAsync(user, Roles.Admin.ToString());
+            if(user is null)
+            {
+                throw new ArgumentException("You are not logged in/registered!");
+            }
+            else
+            {
+                await userManager.AddToRoleAsync(user, Roles.User.ToString());
+                await userManager.RemoveFromRoleAsync(user, Roles.Admin.ToString());
 
-            await signInManager.SignOutAsync();
-            await signInManager.SignInAsync(user, isPersistent: false);
+                await signInManager.SignOutAsync();
+                await signInManager.SignInAsync(user, isPersistent: false);
+            }
 
             return RedirectToAction("Index", "Home");
         }
