@@ -22,13 +22,13 @@ namespace BookSpark.Controllers
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await userManager.FindByIdAsync(userId);
-            if(user == null)
+            if(user == null) // if user is not logged in throw an exception
             {
                 throw new ArgumentException("You are not logged in/registered!");
             }
             else
             {
-                if (adminkey == "gakal123")
+                if (adminkey == "gakal123") // if admin key is matched add user to admin role
                 {
                     await userManager.AddToRoleAsync(user, Roles.Admin.ToString());
                 }
@@ -45,7 +45,7 @@ namespace BookSpark.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = await userManager.FindByIdAsync(userId);
 
-            if(user is null)
+            if(user is null) // if user is not logged in throw an exception
             {
                 throw new ArgumentException("You are not logged in/registered!");
             }

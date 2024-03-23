@@ -32,14 +32,13 @@ namespace BookSpark.Controllers
         public async Task<IActionResult> Index()
         {
             var userId = GetUserId();
-            if(userId == null)
+            if(userId == null) //if user does not exist return error view
             {
                 return RedirectToAction(nameof(WishlistError));
             }
             var books = await wishlistService.GetAll(userId);
-            if (books == null)
+            if (books == null) // if there are no books return a view of a new list of books
             {
-                // if there are no books return a view of a new list of books
                 return View(new List<Book>());
             }
             return View(books.ToList());
@@ -47,7 +46,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Add(int bookId)
         {
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated) // if user is not logged in/ registered return error view
             {
                 return RedirectToAction(nameof(WishlistError));
             }
@@ -58,7 +57,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Remove(int bookId)
         {
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated) // if user is not logged in/ registered return error view
             {
                 return RedirectToAction(nameof(WishlistError));
             }

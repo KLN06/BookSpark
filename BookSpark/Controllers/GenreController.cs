@@ -16,7 +16,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Index()
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(GenreAdminError));
             }
@@ -27,7 +27,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Add()
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(GenreAdminError));
             }
@@ -37,7 +37,7 @@ namespace BookSpark.Controllers
         [HttpPost]
         public IActionResult Add(AddGenreViewModel genre)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(GenreAdminError));
             }
@@ -47,7 +47,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Delete(int id)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(GenreAdminError));
             }
@@ -57,7 +57,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Edit(int id)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(GenreAdminError));
             }
@@ -68,7 +68,7 @@ namespace BookSpark.Controllers
         [HttpPost]
         public IActionResult Edit(EditGenreViewModel genre)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(GenreAdminError));
             }

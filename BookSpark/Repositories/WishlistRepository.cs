@@ -25,7 +25,7 @@ namespace BookSpark.Repositories
                 var user = context.Users.FirstOrDefault(u => u.Id == userId);
                 wishlist = new Wishlist(userId, user, Guid.NewGuid().ToString());
                 context.Wishlist.Add(wishlist);
-            context.SaveChanges();
+                context.SaveChanges();
             }
 
             var wishlistItemExists = context.Wishlist

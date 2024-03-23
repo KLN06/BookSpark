@@ -16,12 +16,12 @@ namespace BookSpark.Controllers
         }
         public IActionResult Index(string searchString)
         {
-            if(searchString is null)
+            if(searchString is null) // if nothing is searched return all books
             {
                 var books = bookService.GetAll().ToList();
                 return View(books);
             }
-            else
+            else //else return the searched book
             {
                 searchString = searchString.ToUpper();
                 var books = bookService.GetAll()
@@ -31,7 +31,7 @@ namespace BookSpark.Controllers
         }
         public IActionResult Add()
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(BookAdminError));
             }
@@ -41,7 +41,7 @@ namespace BookSpark.Controllers
         [HttpPost]
         public IActionResult Add(AddBookViewModel book)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(BookAdminError));
             }
@@ -51,7 +51,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Delete(int id)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(BookAdminError));
             }
@@ -62,7 +62,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Edit(int id)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(BookAdminError));
             }
@@ -81,7 +81,7 @@ namespace BookSpark.Controllers
         [HttpPost]
         public IActionResult Edit(EditBookViewModel book)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(BookAdminError));
             }
@@ -92,7 +92,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Detail(int id)
         {
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated) // if user is not logged in/ registered return error view
             {
                 return RedirectToAction(nameof(BookError));
             }

@@ -6,7 +6,11 @@
 *@
 @{
 }
-
+<style>
+    .jumbotron{
+        color: white;
+    }
+</style>
 @model List<Book>
 <section class="jumbotron text-center">
     <div class="container">
@@ -56,5 +60,5 @@
 
 </main>
 <section class="jumbotron text-center">
-<a asp-controller="Book" asp-action="Index" class="btn btn-primary">Add book</a>
+<a asp-controller="Book" asp-action="Index" class="btn btn-primary">Book catalog</a>
 </section>

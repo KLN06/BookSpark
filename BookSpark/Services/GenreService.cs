@@ -35,7 +35,6 @@ namespace BookSpark.Services
             return new GenreViewModel(genre.Id, genre.Name);
 
         }
-
         public EditGenreViewModel GetEditable(int id)
         {
             var genre = genreRepository.Get(id);

@@ -15,14 +15,6 @@ namespace BookSpark.Models.AuthorViewModels
 
         public virtual ICollection<Book> Books { get; set; }
 
-        //public EditAuthorViewModel(int id, string name, DateTime? birthdate, string? biography, ICollection<Book> books)
-        //{
-            //Id = id;
-            //Name = name;
-            //Birthdate = birthdate;
-            //Biography = biography;
-            //Books = books;
-        //}
         public EditAuthorViewModel() { }
         public EditAuthorViewModel(int id, string name, DateTime? birthdate, string? biography, ICollection<Book> books)
         {

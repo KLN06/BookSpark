@@ -19,7 +19,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Index()
         {
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated) // if user is not logged in/ registered return error view
             {
                 return RedirectToAction(nameof(AuthorsError));
             }
@@ -30,7 +30,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Add()
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(AuthorsAdminError));
             }
@@ -40,7 +40,7 @@ namespace BookSpark.Controllers
         [HttpPost]
         public IActionResult Add(AddAuthorViewModel author)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(AuthorsAdminError));
             }
@@ -51,7 +51,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Delete(int id)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(AuthorsAdminError));
             }
@@ -61,7 +61,7 @@ namespace BookSpark.Controllers
 
         public IActionResult Edit(int id)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(AuthorsAdminError));
             }
@@ -72,16 +72,16 @@ namespace BookSpark.Controllers
         [HttpPost]
         public IActionResult Edit(EditAuthorViewModel author)
         {
-            if (!User.IsInRole(Roles.Admin.ToString()))
+            if (!User.IsInRole(Roles.Admin.ToString())) // if user is not admin return an error view
             {
                 return RedirectToAction(nameof(AuthorsAdminError));
             }
             authorService.Edit(author);
             return RedirectToAction(nameof(Index));
         }
-        public IActionResult Detail(int id)
+        public IActionResult Detail(int id) // if user is not logged in/ registered return error view
         {
-            if (!User.Identity.IsAuthenticated)
+            if (!User.Identity.IsAuthenticated) 
             {
                 return RedirectToAction(nameof(AuthorsAdminError));
             }

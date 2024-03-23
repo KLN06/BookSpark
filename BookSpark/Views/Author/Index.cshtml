@@ -27,12 +27,15 @@
                     <button>
                         <a asp-controller="Author" asp-action="Detail" asp-route-id="@author.Id">Details</a>
                     </button>
-                    <button>
-                        <a asp-controller="Author" asp-action="Edit" asp-route-id="@author.Id">Edit</a>
-                    </button>
-                    <button>
-                        <a asp-controller="Author" asp-action="Delete" asp-route-id="@author.Id">Delete</a>
-                    </button>
+                    @if (User.IsInRole(BookSpark.Data.Enums.Roles.Admin.ToString()))
+                    {
+                        <button>
+                            <a asp-controller="Author" asp-action="Edit" asp-route-id="@author.Id">Edit</a>
+                        </button>
+                        <button>
+                            <a asp-controller="Author" asp-action="Delete" asp-route-id="@author.Id">Delete</a>
+                        </button>
+                    }
 
                 </th>
             </tr>
