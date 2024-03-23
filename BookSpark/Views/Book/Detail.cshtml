@@ -8,8 +8,16 @@
 }
 
 @model BookViewModel
-
+<style>
+    #backtobooks{
+        text-align: center;
+        background-color: white;
+        border-radius: 20px;
+    }
+</style>
 <div class="container">
+
+    <a id="backtobooks" class="boton nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Back to books</a>
 
     <h1 class="my-4"> @Model.Title</h1>
 

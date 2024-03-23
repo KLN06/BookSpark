@@ -1,6 +1,7 @@
 ﻿using BookSpark.Data;
 using BookSpark.Data.Entities;
 using BookSpark.Repositories.Interfaces;
+using Humanizer.Localisation;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
@@ -17,6 +18,10 @@ namespace BookSpark.Repositories
 
         public void Add(Author author)
         {
+            if (author is null)
+            {
+                throw new ArgumentException("Author cannot be null");
+            }
             context.Authors.Add(author);
             context.SaveChanges();
         }
@@ -31,7 +36,7 @@ namespace BookSpark.Repositories
             var author = context.Authors.Include("Books").FirstOrDefault(author => author.Id == id);
             if(author is null)
             {
-                throw new ArgumentException("The author cannot be null");
+                throw new ArgumentException("Author cannot be null");
             }
             return author;
         }

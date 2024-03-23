@@ -12,7 +12,7 @@ namespace BookSpark.Services.Interfaces
 
         void Delete(int id);
 
-        void Edit(EditBookViewModel product);
+        void Edit(EditBookViewModel book);
 
         BookViewModel Get(int id);
     }

@@ -17,46 +17,39 @@ namespace BookSpark.Repositories
         }
         public void Add(Book book)
         {
-            try
+            if (book is null)
             {
-                if (book is null)
-                {
-                    throw new ArgumentException("Book can't be null!");
-                }
+                throw new ArgumentException("Book can't be null!");
+            }
 
-                bool doesAuthorExist = false;
-                foreach (var author in context.Authors)
+            bool doesAuthorExist = false;
+            foreach (var author in context.Authors)
+            {
+                if (book.AuthorId == author.Id)
                 {
-                    if (book.AuthorId == author.Id)
-                    {
-                        doesAuthorExist = true;
-                        break;
-                    }
-                }
-
-                bool doesGenreExist = false;
-                foreach (var genre in context.Genres)
-                {
-                    if (book.GenreId == genre.Id)
-                    {
-                        doesGenreExist = true;
-                        break;
-                    }
-                }
-
-                if (doesAuthorExist && doesGenreExist)
-                {
-                    context.Books.Add(book);
-                    context.SaveChanges();
-                }
-                else
-                {
-                    throw new Exception("Cannot add a book with non-existing parameters");
+                    doesAuthorExist = true;
+                    break;
                 }
             }
-            catch (Exception ex)
+
+            bool doesGenreExist = false;
+            foreach (var genre in context.Genres)
             {
-                Console.WriteLine($"An error occurred: {ex.Message}");
+                if (book.GenreId == genre.Id)
+                {
+                    doesGenreExist = true;
+                    break;
+                }
+            }
+
+            if (doesAuthorExist && doesGenreExist)
+            {
+                context.Books.Add(book);
+                context.SaveChanges();
+            }
+            else
+            {
+                throw new ArgumentException("Cannot add a book with non-existing parameters");
             }
         }
 

@@ -65,14 +65,17 @@
                                         count++; //if there are any books the count increases
                                     }
                                         <button>
-                                            <a asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id">Detail</a>
+                                            <a asp-controller="Book" asp-action="Detail" asp-route-id="@book.Id">Details</a>
                                         </button>
+                                    @if (User.IsInRole(BookSpark.Data.Enums.Roles.Admin.ToString()))
+                                    {
                                         <button>
                                             <a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id">Edit</a>
                                         </button>
                                         <button>
                                             <a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id">Delete</a>
                                         </button>
+                                    }
                                         <a asp-controller="Wishlist" asp-action="Add" asp-route-bookId="@book.Id">
                                             <img id="addtowishlist" src="https://cdn4.iconfinder.com/data/icons/ui-elements-29/64/Add-Bookmark-save-wishlist-ui-512.png" />
                                         </a>
