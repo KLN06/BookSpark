@@ -20,7 +20,7 @@ namespace BookSpark.Controllers
             {
                 return RedirectToAction(nameof(GenreAdminError));
             }
-                var genres = genreService.GetAll();
+            var genres = genreService.GetAll();
            
             return View(genres);
         }

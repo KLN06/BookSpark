@@ -24,11 +24,13 @@ namespace BookSpark.Repositories
         public async Task Add(int bookId)
         {
             string userId = GetUserId();
+
             if (string.IsNullOrEmpty(userId))
             {
                 throw new Exception("user is not logged-in");
             }
-            Wishlist? wishlist = await GetWishlist(userId);
+
+            var wishlist = await GetWishlist(userId);
             if (wishlist is null)
             {
                 var user = context.Users.Find(userId);
@@ -37,8 +39,11 @@ namespace BookSpark.Repositories
             }
             context.SaveChanges();
 
-            var wishlistItem = context.Wishlist.FirstOrDefault(a => a.Id == wishlist.Id && a.Books.Any(b => b.Id == bookId));
-            if (wishlistItem is not null)
+            var wishlistItemExists = context.Wishlist
+                .FirstOrDefault(wishlistEntity => wishlistEntity.Id == wishlist.Id &&
+                wishlistEntity.Books.Any(book => book.Id == bookId));
+
+            if (wishlistItemExists is not null)
             {
                 //message   
             }
@@ -56,18 +61,21 @@ namespace BookSpark.Repositories
         public async Task Remove(int bookId)
         {
             string userId = GetUserId();
+
             if (string.IsNullOrEmpty(userId))
             {
                 throw new Exception("user is not logged-in");
             }
+
             var wishlist = await GetWishlist(userId);
+
             if (wishlist is null)
             {
                 throw new ArgumentException("Wishlist is empty");
             }
 
-            var wishlistItem = context.Wishlist.FirstOrDefault(a => a.Id == wishlist.Id && a.Books.Any(b => b.Id == bookId));
-            if (wishlistItem is not null)
+            var wishlistItemExists = context.Wishlist.FirstOrDefault(a => a.Id == wishlist.Id && a.Books.Any(b => b.Id == bookId));
+            if (wishlistItemExists is not null)
             {
                 var book = context.Books.Find(bookId);
                 wishlist.Books.Remove(book);

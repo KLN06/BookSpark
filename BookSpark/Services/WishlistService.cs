@@ -26,7 +26,6 @@ namespace BookSpark.Services
         public async Task<IEnumerable<Book>> GetAll(string userId)
         {
             var books = await wishlistRepository.GetAll(userId);
-         //   var bookModels = books.Select(book => new BookViewModel(book)).ToList();
             return books;
         }
 

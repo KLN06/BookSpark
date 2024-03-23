@@ -15,6 +15,10 @@ namespace BookSpark.Repositories
         }
         public void Add(Genre genre)
         {
+            if (genre is null)
+            {
+                throw new ArgumentException("Genre cannot be null");
+            }
             context.Genres.Add(genre);
             context.SaveChanges();
         }

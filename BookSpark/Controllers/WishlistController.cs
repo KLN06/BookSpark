@@ -1,5 +1,7 @@
 ﻿using BookSpark.Data.Entities;
+using BookSpark.Models;
 using BookSpark.Models.BookViewModels;
+using BookSpark.Repositories;
 using BookSpark.Services;
 using BookSpark.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -26,11 +28,6 @@ namespace BookSpark.Controllers
                 return RedirectToAction(nameof(WishlistError));
             }
             var books = await wishlistService.GetAll(userId);
-            if (books == null)
-            {
-                // обработка на случая, когато няма книги
-                return View(new List<Book>());
-            }
             return View(books.ToList());
         }
 
