@@ -57,6 +57,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 DataSeed.SeedUserRoles(app);
+Seed.SeedData(app);
 
 app.UseAuthentication();
 app.UseAuthorization();

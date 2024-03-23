@@ -58,7 +58,7 @@ namespace BookSpark_Tests.Services
         #region Add
 
         [Test]
-        public void Add_Genre_AddsGenre()
+        public void GivenGenreExist_WhenAddingAGenree_AddsGenre()
         {
             var genre = new AddGenreViewModel { Name = "Science Fiction" };
 
@@ -146,7 +146,7 @@ namespace BookSpark_Tests.Services
         }
 
         [Test]
-        public void Delete_Genre_DeletesGenre()
+        public void GivenExistingGenre_WhenDeletingGenre_DeletesGenre()
         {
             var genreId = 1;
 

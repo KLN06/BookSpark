@@ -43,11 +43,7 @@ namespace BookSpark.Repositories
                 .FirstOrDefault(wishlistEntity => wishlistEntity.Id == wishlist.Id &&
                 wishlistEntity.Books.Any(book => book.Id == bookId));
 
-            if (wishlistItemExists is not null)
-            {
-                //message   
-            }
-            else
+            if (wishlistItemExists is null)
             {
                 var book = context.Books
                     .Include("Author")

@@ -14,6 +14,7 @@ namespace BookSpark.Controllers
     {
         private readonly IWishlistService wishlistService;
         private readonly UserManager<AppUser> userManager;
+        private readonly BookController bookController;
 
         public WishlistController(IWishlistService wishlistService, UserManager<AppUser> userManager)
         {
@@ -28,6 +29,11 @@ namespace BookSpark.Controllers
                 return RedirectToAction(nameof(WishlistError));
             }
             var books = await wishlistService.GetAll(userId);
+            if (books == null)
+            {
+                // if there are no books return a view of a new list of books
+                return View(new List<Book>());
+            }
             return View(books.ToList());
         }
 

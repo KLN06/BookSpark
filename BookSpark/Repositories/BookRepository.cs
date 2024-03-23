@@ -3,6 +3,7 @@ using BookSpark.Data.Entities;
 using BookSpark.Models.BookViewModels;
 using BookSpark.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 namespace BookSpark.Repositories
 {
@@ -16,12 +17,47 @@ namespace BookSpark.Repositories
         }
         public void Add(Book book)
         {
-            if(book is null)
+            try
             {
-                throw new ArgumentException("Book can't be null!");
+                if (book is null)
+                {
+                    throw new ArgumentException("Book can't be null!");
+                }
+
+                bool doesAuthorExist = false;
+                foreach (var author in context.Authors)
+                {
+                    if (book.AuthorId == author.Id)
+                    {
+                        doesAuthorExist = true;
+                        break;
+                    }
+                }
+
+                bool doesGenreExist = false;
+                foreach (var genre in context.Genres)
+                {
+                    if (book.GenreId == genre.Id)
+                    {
+                        doesGenreExist = true;
+                        break;
+                    }
+                }
+
+                if (doesAuthorExist && doesGenreExist)
+                {
+                    context.Books.Add(book);
+                    context.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Cannot add a book with non-existing parameters");
+                }
             }
-            context.Books.Add(book);
-            context.SaveChanges();
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
         }
 
         public void Delete(int id)

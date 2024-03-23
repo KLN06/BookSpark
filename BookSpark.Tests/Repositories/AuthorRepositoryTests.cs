@@ -29,6 +29,7 @@ namespace BookSpark.Tests.Repositories
         public void TearDown()
         {
             applicationDbContext.Database.EnsureDeleted();
+            applicationDbContext.Dispose();
         }
         #region Add
         [Test]

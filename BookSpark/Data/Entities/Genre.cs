@@ -10,8 +10,6 @@ namespace BookSpark.Data.Entities
 
         [Required]
         public string Name { get; set; }
-
-      //  public ICollection<Book> Books { get; set; }
         public Genre()
         { }
         public Genre(int id, string name)
@@ -23,18 +21,5 @@ namespace BookSpark.Data.Entities
         {
             Name = name;
         }
-        public override bool Equals(object? other)
-            => Equals((Genre)other);
-
-        public bool Equals(Genre other)
-            => other != null &&
-            Id == other.Id &&
-            Name == other.Name;
-
-        /*
-        public Genre(int id, string name, ICollection<Book> books) : this(id, name)
-        {
-            Books = books;
-        }*/
     }
 }
