@@ -14,7 +14,6 @@ namespace BookSpark.Controllers
     {
         private readonly IWishlistService wishlistService;
         private readonly UserManager<AppUser> userManager;
-        private readonly BookController bookController;
 
         public WishlistController(IWishlistService wishlistService, UserManager<AppUser> userManager)
         {
