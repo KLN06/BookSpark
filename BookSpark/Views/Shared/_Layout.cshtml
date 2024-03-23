@@ -26,17 +26,16 @@
                 transform: scale(1.1);
             box-shadow: 0 15px 30px 10px rgba(0, 0, 0, 0.5);
         }
-        /* #adminform{
-            margin-left: 5rem;
+        #adminform{
+            display:flex;
+            min-width:15%;
         }
-        #adminrole{
-            margin-left:2rem;
+        #adminkeyinput{
+            margin-left:0px;
         }
-
-        #gobacktouserrole {
-            min-width:10%;
-            margin-left: 1rem;
-        } */
+        #adminbtn{
+            margin-right:0px;
+        }
 
     </style>
 </head>
@@ -92,7 +91,7 @@
 
 
                 <form id="adminform" asp-area="" asp-controller="User" asp-action="SetAdminRole" method="post">
-                    <div class="form-floating mb-3">
+                    <div id="adminkeyinput" class="form-floating mb-3">
                         <input id="adminkey" name="adminKey" class="form-control" autocomplete="off" aria-required="true" placeholder="Admin Key" />
                         <label for="adminkey">Admin Key</label>
                     </div>
