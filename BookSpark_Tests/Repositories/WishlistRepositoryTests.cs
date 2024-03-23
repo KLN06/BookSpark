@@ -51,8 +51,8 @@ namespace BookSpark_Tests.Repositories
         [TearDown]
         public void TearDown()
         {
-            context.Database.EnsureDeleted();
-            context.Dispose();
+            applicationContext.Database.EnsureDeleted();
+            applicationContext.Dispose();
         }
 
         [Test]
