@@ -60,29 +60,30 @@
                                 </li>
                             }
                         }
+
+                        <li class="nav-item">
+                            <a class="boton nav-link text-dark" asp-area="" asp-controller="Wishlist" asp-action="Index">My wishlist</a>
+                        </li>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <li class="nav-item">
-                                <a class="boton nav-link text-dark" asp-area="" asp-controller="Wishlist" asp-action="Index">My wishlist</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="boton nav-link text-dark" asp-area="" asp-controller="Author" asp-action="Index">Authors</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="boton nav-link text-dark" asp-area="" asp-controller="Author" asp-action="Index">Authors</a>
+                        </li>
                         }
                         @if (User.IsInRole(BookSpark.Data.Enums.Roles.Admin.ToString()))
                         {
-                            <li class="nav-item">
-                                <a class="boton nav-link text-dark" asp-area="" asp-controller="Genre" asp-action="Index">Genres</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="boton nav-link text-dark" asp-controller="Book" asp-action="Add" >Add book</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="boton nav-link text-dark" asp-area="" asp-controller="Genre" asp-action="Add">Add genre</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="boton nav-link text-dark" asp-area="" asp-controller="Author" asp-action="Add">Add author</a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="boton nav-link text-dark" asp-area="" asp-controller="Genre" asp-action="Index">Genres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="boton nav-link text-dark" asp-controller="Book" asp-action="Add">Add book</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="boton nav-link text-dark" asp-area="" asp-controller="Genre" asp-action="Add">Add genre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="boton nav-link text-dark" asp-area="" asp-controller="Author" asp-action="Add">Add author</a>
+                        </li>
                         }
 
                     </ul>
@@ -92,7 +93,7 @@
 
                 <form id="adminform" asp-area="" asp-controller="User" asp-action="SetAdminRole" method="post">
                     <div id="adminkeyinput" class="form-floating mb-3">
-                        <input id="adminkey" name="adminKey" class="form-control" autocomplete="off" aria-required="true" placeholder="Admin Key" />
+                        <input id="adminkey" name="adminKey" class="form-control" autocomplete="off" aria-required="true" placeholder="Admin Key" type="password"/>
                         <label for="adminkey">Admin Key</label>
                     </div>
                     <button id="adminbtn" type="submit" class="btn btn-primary">Submit</button>
