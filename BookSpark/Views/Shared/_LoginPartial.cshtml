@@ -7,39 +7,51 @@
 <style>
     #login{
         width: 67%;
-        background-color:white;
+        background-color: #BBAB94 !important;
+        color: #FEEEBD !important;
         border-radius: 20px;
+        border: solid #FEEEBD;
         transition: all 0.3s ease;
     }    
     #login:hover{
-        background-color: white;
+        background-color: #FEEEBD !important;
+        color: #BBAB94 !important;
         transform: scale(1.1);
-        box-shadow: 0 15px 30px 10px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 15px 30px 10px #BBAB94;
     }
 
     #register {
         width: 67%;
-        background-color: white;
+        background-color: #BBAB94 !important;
+        color: #FEEEBD !important;
         border-radius: 20px;
+        border: solid #FEEEBD;
         transition: all 0.3s ease;
     }
 
     #register:hover {
-        background-color: white;
+        background-color: #FEEEBD !important;
+        color: #BBAB94 !important;
         transform: scale(1.1);
-        box-shadow: 0 15px 30px 10px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 15px 30px 10px #BBAB94;
     }
     #authnav{
         display: flex;
         justify-content: center;
         margin-left: 25%;
     }
+    #manage{
+        color: #FEEEBD !important;
+    }
+    #logout{
+        color: #FEEEBD !important;
+    }
 </style>
 
 <ul id ="authnav" class="navbar-nav">
 @if (SignInManager.IsSignedIn(User))
 {
-    <li class="nav-item">
+    <li id="hellouser" class="nav-item">
         <a id="manage" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
     </li>
     <li class="nav-item">

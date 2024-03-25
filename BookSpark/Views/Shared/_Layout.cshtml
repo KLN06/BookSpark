@@ -10,21 +10,35 @@
 
     <style>
         body, main{
-            background-color: #737373;
+            background-color: #BBAB94;
         }
         #footer{
-            background-color:white;
+            background-color: white;
         }
         #nabar{
-            box-shadow: 0 15px 30px 10px rgba(0, 0, 0, 0.5);
+            background-color: #BBAB94;
+            border: solid #BBAB94 !important;
+            transition: all 0.3s ease;
+        }
+        #nabar:hover{
+            border: solid #BBAB94;
+            box-shadow: 0 15px 30px 10px #BBAB94;
+        }
+        nav{
+            border: solid #BBAB94 !important;
+            background-color: #BBAB94;
         }
         .boton{
-            border-radius: 10px;
+            color: #FEEEBD !important;
+            border-radius: 20px;
+            border: solid #FEEEBD;
             transition: all 0.3s ease;
         }
         .boton:hover{
-                transform: scale(1.1);
-            box-shadow: 0 15px 30px 10px rgba(0, 0, 0, 0.5);
+            background-color: #FEEEBD !important;
+            color: #BBAB94 !important;
+            transform: scale(1.1);
+            box-shadow: 0 15px 30px 10px #BBAB94;
         }
         #adminform{
             display:flex;
@@ -40,8 +54,8 @@
     </style>
 </head>
 <body>
-    <header>
-        <nav id="nabar" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <header id="navigationbar">
+        <nav id="nabar" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BookSpark</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
