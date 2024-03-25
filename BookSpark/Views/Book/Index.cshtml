@@ -9,9 +9,10 @@
 }
 @model IEnumerable<BookViewModel>
 <style>
-    main{
+    /* main{
         background-color: white;
-    }
+    } */
+
     #addtowishlist{
         max-height:75px;
         max-width:50px;
@@ -20,8 +21,25 @@
         margin-left: 1rem;
     }
     #authorname{
-        margin-right: 10%;
+        margin-right: 1rem;
         min-width: 25%;
+    }
+    .container{
+        margin-top: 2% !important;
+        background-color: #BBAB94 !important;
+    }
+    #catalog, body, html{
+        background-color: #BBAB94;
+    }
+    #catalog{
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+    #book{
+        border-radius: 20px !important;
+    }
+    #bookcover{
+        border-radius: 20px !important;
     }
 </style>
 
@@ -55,8 +73,8 @@
                     
 
                     <div class="col-md-4">
-                        <div class="card mb-4 box-shadow">
-                            <img src=@book.ImageLink alt="The image is not found">
+                    <div id="book" class="card mb-4 box-shadow">
+                            <img id="bookcover" src=@book.ImageLink alt="The image is not found">
                             <div class="card-body">
                                 <p class="card-text">@book.Title</p>
                                 <div class="d-flex justify-content-between align-items-center">
